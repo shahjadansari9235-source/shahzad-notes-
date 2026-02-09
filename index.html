@@ -3,27 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shahzad Notes - Premium Educational Resources</title>
+    <title>Shahzad Notes - Premium Educational Notes Marketplace</title>
+    <!-- All CSS, JS, and libraries in one file -->
+    
+    <!-- Font Awesome Icons (CDN) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
-    <script src="https://js.instamojo.com/v1/checkout.js"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- PDF.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    
+    <!-- Razorpay Payment -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    
     <style>
+        /* ==================== ALL CSS IN ONE PLACE ==================== */
+        
         :root {
-            --primary: #1a73e8;
-            --primary-dark: #0d47a1;
-            --secondary: #34a853;
-            --accent: #fbbc04;
-            --danger: #ea4335;
-            --light: #f8f9fa;
-            --dark: #202124;
-            --gray: #5f6368;
-            --light-gray: #dadce0;
-            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.06);
-            --card-shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.1), 0 6px 10px rgba(0, 0, 0, 0.08);
-            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            --border-radius: 12px;
-            --glass-bg: rgba(255, 255, 255, 0.9);
-            --glass-border: rgba(255, 255, 255, 0.18);
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --border-color: #ddd;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
         }
 
         * {
@@ -33,75 +42,68 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Poppins', sans-serif;
             line-height: 1.6;
-            color: var(--dark);
+            color: var(--text-color);
             background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
             min-height: 100vh;
             overflow-x: hidden;
         }
 
         .container {
-            width: 100%;
+            width: 90%;
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 15px;
         }
 
-        /* Header & Navigation */
+        /* Header */
         header {
-            background: var(--glass-bg);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--glass-border);
+            box-shadow: var(--shadow);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            animation: slideDown 0.5s ease;
+            border-bottom: 2px solid var(--secondary-color);
         }
 
-        @keyframes slideDown {
-            from { transform: translateY(-100%); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        nav {
+        .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 18px 0;
+            padding: 20px 0;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             text-decoration: none;
         }
 
         .logo-icon {
-            width: 42px;
-            height: 42px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            border-radius: 10px;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 22px;
-            font-weight: 700;
+            font-weight: bold;
+            font-size: 20px;
         }
 
         .logo-text {
-            font-size: 1.8rem;
+            font-size: 24px;
             font-weight: 800;
-            color: var(--dark);
-            font-family: 'Merriweather', serif;
+            color: var(--primary-color);
         }
 
         .logo-text span {
-            color: var(--primary);
+            color: var(--secondary-color);
         }
 
         .nav-links {
@@ -112,20 +114,20 @@
 
         .nav-links a {
             text-decoration: none;
-            color: var(--dark);
+            color: var(--text-color);
             font-weight: 600;
-            font-size: 1.05rem;
+            font-size: 16px;
             padding: 8px 0;
             position: relative;
             transition: var(--transition);
         }
 
         .nav-links a:hover {
-            color: var(--primary);
+            color: var(--secondary-color);
         }
 
         .nav-links a.active {
-            color: var(--primary);
+            color: var(--secondary-color);
         }
 
         .nav-links a.active::after {
@@ -135,21 +137,21 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background: var(--primary);
-            border-radius: 2px;
+            background: var(--secondary-color);
         }
 
         .user-section {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
         }
 
+        /* Buttons */
         .btn {
             padding: 12px 28px;
             border-radius: 8px;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 16px;
             cursor: pointer;
             transition: var(--transition);
             border: none;
@@ -161,35 +163,34 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            background: linear-gradient(135deg, var(--secondary-color), #2980b9);
             color: white;
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(26, 115, 232, 0.3);
+            box-shadow: 0 6px 15px rgba(52, 152, 219, 0.3);
         }
 
         .btn-success {
-            background: linear-gradient(135deg, var(--secondary), #2e8b57);
+            background: linear-gradient(135deg, var(--success-color), #219653);
             color: white;
         }
 
         .btn-success:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(52, 168, 83, 0.3);
+            box-shadow: 0 6px 15px rgba(39, 174, 96, 0.3);
         }
 
         .btn-outline {
             background: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
+            color: var(--secondary-color);
+            border: 2px solid var(--secondary-color);
         }
 
         .btn-outline:hover {
-            background: var(--primary);
+            background: var(--secondary-color);
             color: white;
-            transform: translateY(-2px);
         }
 
         .btn-small {
@@ -197,124 +198,19 @@
             font-size: 0.9rem;
         }
 
-        .user-profile {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            padding: 8px 16px;
-            border-radius: 50px;
-            background: rgba(26, 115, 232, 0.08);
-            transition: var(--transition);
-        }
-
-        .user-profile:hover {
-            background: rgba(26, 115, 232, 0.15);
-        }
-
-        .avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 600;
-            font-size: 1rem;
-        }
-
-        /* Welcome Popup */
-        .welcome-popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.95);
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-            padding: 50px;
-            width: 90%;
-            max-width: 600px;
-            z-index: 2000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .welcome-popup.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translate(-50%, -50%) scale(1);
-        }
-
-        .welcome-content {
-            text-align: center;
-        }
-
-        .welcome-icon {
-            font-size: 4rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        .welcome-content h1 {
-            font-size: 2.8rem;
-            margin-bottom: 20px;
-            color: var(--dark);
-            font-family: 'Merriweather', serif;
-        }
-
-        .welcome-content p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            color: var(--gray);
-            line-height: 1.8;
-        }
-
-        .close-popup {
-            position: absolute;
-            top: 25px;
-            right: 25px;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(0, 0, 0, 0.05);
-            border: none;
-            font-size: 1.5rem;
-            color: var(--gray);
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .close-popup:hover {
-            background: rgba(0, 0, 0, 0.1);
-            transform: rotate(90deg);
-        }
-
         /* Main Content */
         main {
             margin-top: 100px;
             padding-bottom: 80px;
-            min-height: calc(100vh - 180px);
         }
 
-        /* Dashboard Sections */
-        .dashboard-section {
+        .section {
             display: none;
             animation: fadeIn 0.5s ease;
+        }
+
+        .section.active {
+            display: block;
         }
 
         @keyframes fadeIn {
@@ -322,208 +218,188 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .dashboard-section.active {
-            display: block;
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 0;
+            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9));
+            background-size: cover;
+            border-radius: 20px;
             margin-bottom: 40px;
-            flex-wrap: wrap;
-            gap: 20px;
         }
 
-        .section-header h1 {
-            font-size: 2.5rem;
-            color: var(--dark);
-            font-weight: 800;
-            font-family: 'Merriweather', serif;
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
         }
 
-        .section-header h1 span {
-            color: var(--primary);
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            max-width: 800px;
+            margin: 0 auto 30px;
         }
 
         /* Notes Grid */
         .notes-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 30px;
-            margin-top: 20px;
+            margin: 30px 0;
         }
 
         .note-card {
             background: white;
-            border-radius: var(--border-radius);
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: var(--card-shadow);
+            box-shadow: var(--shadow);
             transition: var(--transition);
-            animation: cardAppear 0.6s ease;
-            animation-fill-mode: both;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            border: 1px solid var(--light-gray);
-        }
-
-        @keyframes cardAppear {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            border: 1px solid var(--border-color);
         }
 
         .note-card:hover {
             transform: translateY(-10px);
-            box-shadow: var(--card-shadow-hover);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
 
-        .note-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            z-index: 2;
-        }
-
-        .free-badge {
-            background: linear-gradient(135deg, var(--secondary), #2e8b57);
+        .note-header {
+            padding: 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
-        }
-
-        .premium-badge {
-            background: linear-gradient(135deg, var(--accent), #ff9800);
-            color: white;
-        }
-
-        .note-image {
-            height: 180px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 4rem;
             position: relative;
         }
 
-        .note-image.free {
-            background: linear-gradient(135deg, #34a853 0%, #2e8b57 100%);
+        .note-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 5px;
         }
 
-        .note-image.premium {
-            background: linear-gradient(135deg, #fbbc04 0%, #ff9800 100%);
+        .note-price {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            backdrop-filter: blur(5px);
         }
 
-        .note-content {
-            padding: 25px;
-            flex-grow: 1;
+        .note-body {
+            padding: 20px;
+        }
+
+        .note-description {
+            color: #666;
+            margin-bottom: 15px;
+            height: 80px;
+            overflow: hidden;
+        }
+
+        .note-footer {
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* PDF Preview */
+        .pdf-preview-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .pdf-preview-container.active {
+            display: flex;
+        }
+
+        .pdf-preview {
+            background: white;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 900px;
+            height: 90vh;
             display: flex;
             flex-direction: column;
         }
 
-        .note-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: var(--dark);
-            line-height: 1.3;
-        }
-
-        .note-description {
-            color: var(--gray);
-            margin-bottom: 20px;
-            flex-grow: 1;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        .note-meta {
+        .pdf-header {
+            padding: 20px;
+            background: var(--primary-color);
+            color: white;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid var(--light-gray);
-            font-size: 0.9rem;
-            color: var(--gray);
+            border-radius: 12px 12px 0 0;
         }
 
-        .note-uploader {
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        .pdf-viewer {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
         }
 
-        .note-uploader-avatar {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background: var(--primary);
-            color: white;
-            display: flex;
+        #pdf-canvas {
+            width: 100%;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        /* Payment Modal */
+        .payment-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
             align-items: center;
             justify-content: center;
-            font-size: 0.8rem;
-            font-weight: 600;
         }
 
-        .note-price {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--dark);
-        }
-
-        .note-price.free {
-            color: var(--secondary);
-        }
-
-        .note-price.premium {
-            color: var(--accent);
-        }
-
-        .note-actions {
+        .payment-modal.active {
             display: flex;
-            gap: 10px;
-            margin-top: 20px;
+        }
+
+        .payment-content {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .qr-code-container {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
         }
 
         /* Upload Form */
-        .upload-form-container {
+        .upload-form {
             background: white;
-            border-radius: var(--border-radius);
-            padding: 40px;
-            box-shadow: var(--card-shadow);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: var(--shadow);
             margin-top: 30px;
-            display: none;
-        }
-
-        .upload-form-container.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .form-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-
-        .form-header h3 {
-            font-size: 1.8rem;
-            color: var(--dark);
-            font-weight: 700;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            margin-bottom: 25px;
         }
 
         .form-group {
@@ -532,215 +408,59 @@
 
         .form-group label {
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             font-weight: 600;
-            color: var(--dark);
-            font-size: 1rem;
+            color: var(--primary-color);
         }
 
         .form-group input,
-        .form-group select,
-        .form-group textarea {
+        .form-group textarea,
+        .form-group select {
             width: 100%;
-            padding: 15px;
-            border: 1px solid var(--light-gray);
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
             border-radius: 8px;
-            font-size: 1rem;
-            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
             transition: var(--transition);
-            background: white;
-        }
-
-        .form-group textarea {
-            min-height: 150px;
-            resize: vertical;
         }
 
         .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2);
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
             outline: none;
         }
 
-        .file-upload-area {
-            border: 2px dashed var(--light-gray);
-            border-radius: 12px;
-            padding: 50px 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: var(--transition);
-            background: #fafafa;
-        }
-
-        .file-upload-area:hover {
-            border-color: var(--primary);
-            background: rgba(26, 115, 232, 0.03);
-        }
-
-        .file-upload-area.dragover {
-            border-color: var(--primary);
-            background: rgba(26, 115, 232, 0.08);
-        }
-
-        .file-upload-icon {
-            font-size: 3.5rem;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-
-        .file-info {
-            margin-top: 15px;
-            font-size: 0.9rem;
-            color: var(--gray);
-        }
-
-        /* Payment Modal */
-        .payment-modal {
+        /* Chat Widget */
+        .chat-widget {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 3000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
         }
 
-        .payment-modal.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .payment-container {
-            background: white;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 500px;
-            padding: 40px;
-            position: relative;
-            transform: translateY(30px);
-            transition: transform 0.4s ease;
-        }
-
-        .payment-modal.active .payment-container {
-            transform: translateY(0);
-        }
-
-        .payment-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .payment-header h3 {
-            font-size: 1.8rem;
-            color: var(--dark);
-            margin-bottom: 10px;
-        }
-
-        .payment-amount {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--primary);
-            margin: 20px 0;
-        }
-
-        .payment-note {
-            text-align: center;
-            font-size: 0.9rem;
-            color: var(--gray);
-            margin-top: 15px;
-        }
-
-        .upi-options {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin: 25px 0;
-        }
-
-        .upi-option {
-            border: 2px solid var(--light-gray);
-            border-radius: 10px;
-            padding: 15px;
-            text-align: center;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .upi-option:hover {
-            border-color: var(--primary);
-            background: rgba(26, 115, 232, 0.05);
-        }
-
-        .upi-option.active {
-            border-color: var(--primary);
-            background: rgba(26, 115, 232, 0.1);
-        }
-
-        .upi-icon {
-            font-size: 2rem;
-            margin-bottom: 10px;
-            color: var(--primary);
-        }
-
-        /* Stats */
-        .stats-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 25px;
-            margin: 40px 0;
-        }
-
-        .stat-card {
-            background: white;
-            border-radius: var(--border-radius);
-            padding: 30px;
-            box-shadow: var(--card-shadow);
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            transition: var(--transition);
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--card-shadow-hover);
-        }
-
-        .stat-icon {
+        .chat-button {
             width: 60px;
             height: 60px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
+            border-radius: 50%;
+            background: var(--success-color);
             color: white;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+            transition: var(--transition);
         }
 
-        .stat-icon.notes { background: linear-gradient(135deg, #667eea, #764ba2); }
-        .stat-icon.sales { background: linear-gradient(135deg, #f093fb, #f5576c); }
-        .stat-icon.users { background: linear-gradient(135deg, #4facfe, #00f2fe); }
-        .stat-icon.revenue { background: linear-gradient(135deg, #43e97b, #38f9d7); }
-
-        .stat-info h3 {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--dark);
-            margin-bottom: 5px;
+        .chat-button:hover {
+            transform: scale(1.1);
         }
 
         /* Footer */
         footer {
-            background: var(--dark);
+            background: var(--primary-color);
             color: white;
             padding: 60px 0 30px;
             margin-top: 80px;
@@ -760,12 +480,6 @@
             font-weight: 700;
         }
 
-        .footer-section p {
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
         .contact-info {
             display: flex;
             flex-direction: column;
@@ -776,11 +490,11 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.8);
         }
 
         .contact-item i {
-            color: var(--primary);
+            color: var(--secondary-color);
             font-size: 1.2rem;
             width: 24px;
         }
@@ -789,8 +503,205 @@
             text-align: center;
             padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.5);
+            color: rgba(255, 255, 255, 0.6);
             font-size: 0.9rem;
+        }
+
+        /* Commission Badge */
+        .commission-badge {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--warning-color), #e67e22);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            box-shadow: var(--shadow);
+            z-index: 999;
+        }
+
+        /* AI Chat Bot */
+        .ai-chat-container {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 350px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+            z-index: 1001;
+        }
+
+        .ai-chat-container.active {
+            display: flex;
+        }
+
+        .ai-chat-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 15px 20px;
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ai-chat-body {
+            height: 300px;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .ai-chat-input {
+            padding: 15px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            gap: 10px;
+        }
+
+        .ai-chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+        }
+
+        /* Withdrawal System */
+        .withdrawal-form {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            max-width: 500px;
+            margin: 30px auto;
+        }
+
+        .balance-display {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .balance-amount {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--success-color);
+            margin: 10px 0;
+        }
+
+        /* Notification System */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            z-index: 2000;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.success {
+            border-left: 5px solid var(--success-color);
+        }
+
+        .notification.error {
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .notification.info {
+            border-left: 5px solid var(--secondary-color);
+        }
+
+        /* Fullscreen Mode */
+        body.fullscreen {
+            padding: 0;
+            margin: 0;
+        }
+
+        body.fullscreen .container {
+            max-width: 100%;
+            padding: 0;
+        }
+
+        .fullscreen-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: var(--shadow);
+        }
+
+        /* Admin Dashboard */
+        .admin-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-card h3 {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .notes-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .pdf-preview {
+                width: 95%;
+                height: 80vh;
+            }
+            
+            .ai-chat-container {
+                width: 90%;
+                right: 5%;
+            }
         }
 
         /* Animation Delays for Cards */
@@ -801,403 +712,356 @@
         .note-card:nth-child(5) { animation-delay: 0.5s; }
         .note-card:nth-child(6) { animation-delay: 0.6s; }
 
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .hamburger {
-                display: block;
-                font-size: 1.5rem;
-                cursor: pointer;
-                color: var(--dark);
-            }
-            
-            .form-row {
-                grid-template-columns: 1fr;
-            }
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(52, 152, 219, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--secondary-color);
+            animation: spin 1s ease-in-out infinite;
         }
 
-        @media (max-width: 768px) {
-            .section-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .notes-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .welcome-content h1 {
-                font-size: 2.2rem;
-            }
-            
-            .upload-form-container {
-                padding: 25px;
-            }
-            
-            .payment-container {
-                padding: 30px 20px;
-            }
-            
-            .upi-options {
-                grid-template-columns: 1fr;
-            }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
-    <!-- Welcome Popup -->
-    <div class="welcome-popup active" id="welcomePopup">
-        <button class="close-popup" id="closePopup">&times;</button>
-        <div class="welcome-content">
-            <div class="welcome-icon">
-                <i class="fas fa-graduation-cap"></i>
-            </div>
-            <h1>Welcome to Shahzad Notes</h1>
-            <p>Your premier destination for quality educational resources. Access free study materials or purchase premium notes from top educators. Start your learning journey today!</p>
-            <div style="display: flex; gap: 15px; justify-content: center; margin-top: 30px;">
-                <button class="btn btn-primary" id="exploreBtn">
-                    <i class="fas fa-compass"></i> Explore Notes
-                </button>
-                <button class="btn btn-outline" id="uploadWelcomeBtn">
-                    <i class="fas fa-upload"></i> Upload Notes
-                </button>
-            </div>
-        </div>
-    </div>
-
+    <!-- ==================== HTML STRUCTURE ==================== -->
+    
     <!-- Header -->
     <header>
         <div class="container">
-            <nav>
+            <nav class="navbar">
                 <a href="#" class="logo">
                     <div class="logo-icon">SN</div>
                     <div class="logo-text">Shahzad<span>Notes</span></div>
                 </a>
                 
-                <div class="hamburger" id="hamburger">
-                    <i class="fas fa-bars"></i>
-                </div>
-                
                 <ul class="nav-links">
                     <li><a href="#" id="navHome" class="active">Home</a></li>
-                    <li><a href="#" id="navMyNotes">My Notes</a></li>
                     <li><a href="#" id="navMarket">Notes Market</a></li>
-                    <li><a href="#" id="navUpload">Upload</a></li>
-                    <li><a href="#" id="navStats">Dashboard</a></li>
+                    <li><a href="#" id="navUpload">Upload Notes</a></li>
+                    <li><a href="#" id="navDashboard">My Dashboard</a></li>
+                    <li><a href="#" id="navWithdraw">Withdraw</a></li>
                 </ul>
                 
                 <div class="user-section">
-                    <div class="user-profile" id="userProfile">
-                        <div class="avatar" id="userAvatar">S</div>
-                        <div>
-                            <div id="userName">Sign In</div>
-                            <div style="font-size: 0.8rem; color: var(--gray);" id="userType">Guest</div>
-                        </div>
-                        <i class="fas fa-chevron-down" style="font-size: 0.9rem;"></i>
+                    <div class="user-info" id="userInfo">
+                        <div class="user-avatar" id="userAvatar">G</div>
+                        <span id="userName">Guest</span>
                     </div>
+                    <button class="btn btn-primary" id="loginBtn">Login</button>
                 </div>
             </nav>
         </div>
     </header>
 
+    <!-- Commission Badge -->
+    <div class="commission-badge">
+        <i class="fas fa-percentage"></i> 5% Commission on Every Sale
+    </div>
+
+    <!-- Fullscreen Button -->
+    <button class="fullscreen-btn" id="fullscreenBtn" title="Toggle Fullscreen">
+        <i class="fas fa-expand"></i>
+    </button>
+
     <!-- Main Content -->
     <main>
         <div class="container">
             <!-- Home Section -->
-            <section id="homeSection" class="dashboard-section active">
-                <div class="section-header">
-                    <h1>Premium <span>Educational</span> Resources</h1>
-                    <div>
-                        <button class="btn btn-primary" id="uploadNotesBtn">
-                            <i class="fas fa-plus-circle"></i> Upload Notes
-                        </button>
-                    </div>
+            <section id="homeSection" class="section active">
+                <div class="hero">
+                    <h1>Premium Educational Notes Marketplace</h1>
+                    <p>Buy and sell high-quality educational notes. Upload your notes, earn money, and help others learn. We take only 5% commission per sale.</p>
+                    <button class="btn btn-primary btn-lg" id="getStartedBtn">
+                        <i class="fas fa-rocket"></i> Get Started
+                    </button>
                 </div>
-                
-                <div class="stats-container">
-                    <div class="stat-card">
-                        <div class="stat-icon notes">
-                            <i class="fas fa-book"></i>
-                        </div>
-                        <div class="stat-info">
-                            <h3 id="totalNotesCount">0</h3>
-                            <p>Total Notes</p>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon sales">
-                            <i class="fas fa-shopping-cart"></i>
-                        </div>
-                        <div class="stat-info">
-                            <h3 id="totalSalesCount">0</h3>
-                            <p>Total Sales</p>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon users">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <div class="stat-info">
-                            <h3 id="totalUsersCount">0</h3>
-                            <p>Active Users</p>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon revenue">
-                            <i class="fas fa-rupee-sign"></i>
-                        </div>
-                        <div class="stat-info">
-                            <h3 id="totalRevenue">₹0</h3>
-                            <p>Total Revenue</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <h2 style="margin: 50px 0 25px; color: var(--dark); font-size: 1.8rem;">Featured Notes</h2>
-                <div class="notes-grid" id="featuredNotesGrid">
-                    <!-- Featured notes will be loaded here -->
+
+                <h2>Featured Notes</h2>
+                <div class="notes-grid" id="featuredNotes">
+                    <!-- Notes will be loaded here dynamically -->
                 </div>
             </section>
 
-            <!-- My Notes Section -->
-            <section id="myNotesSection" class="dashboard-section">
+            <!-- Notes Market Section -->
+            <section id="marketSection" class="section">
                 <div class="section-header">
-                    <h1>My <span>Uploaded</span> Notes</h1>
-                    <div>
-                        <button class="btn btn-primary" id="uploadMyNotesBtn">
-                            <i class="fas fa-plus-circle"></i> Upload New
+                    <h2>Notes Marketplace</h2>
+                    <div class="filters">
+                        <select id="categoryFilter" class="form-control">
+                            <option value="all">All Categories</option>
+                            <option value="school">School Notes</option>
+                            <option value="college">College Notes</option>
+                            <option value="competitive">Competitive Exams</option>
+                        </select>
+                        <select id="priceFilter" class="form-control">
+                            <option value="all">All Prices</option>
+                            <option value="free">Free Notes</option>
+                            <option value="paid">Paid Notes</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="notes-grid" id="marketNotes">
+                    <!-- Market notes will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Upload Notes Section -->
+            <section id="uploadSection" class="section">
+                <h2>Upload Your Notes</h2>
+                <p>Upload your notes and start earning. We take 5% commission on every sale.</p>
+                
+                <div class="upload-form">
+                    <form id="noteUploadForm">
+                        <div class="form-group">
+                            <label for="uploadTitle">Note Title *</label>
+                            <input type="text" id="uploadTitle" required placeholder="Enter note title">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="uploadDescription">Description *</label>
+                            <textarea id="uploadDescription" required rows="4" placeholder="Describe your notes..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="uploadCategory">Category *</label>
+                            <select id="uploadCategory" required>
+                                <option value="">Select Category</option>
+                                <option value="school">School Notes (₹0-₹99)</option>
+                                <option value="college">College Notes (₹0-₹199)</option>
+                                <option value="competitive">Competitive Exams (₹0-₹299)</option>
+                                <option value="programming">Programming (₹0-₹499)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="uploadPrice">Price (₹) *</label>
+                            <input type="number" id="uploadPrice" min="0" max="999" value="0" required>
+                            <small>Set 0 for free notes</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="uploadFile">Upload PDF File *</label>
+                            <div class="file-upload-area" id="fileUploadArea">
+                                <i class="fas fa-cloud-upload-alt" style="font-size: 3rem; color: var(--secondary-color); margin-bottom: 15px;"></i>
+                                <p>Click to upload or drag and drop PDF file</p>
+                                <p>Max file size: 20MB</p>
+                                <input type="file" id="uploadFile" accept=".pdf" hidden>
+                            </div>
+                            <div id="fileName">No file chosen</div>
+                        </div>
+                        
+                        <div class="commission-notice">
+                            <i class="fas fa-info-circle"></i>
+                            <span>You will earn 95% of the sale price. 5% commission goes to platform.</span>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-success btn-block">
+                            <i class="fas fa-upload"></i> Upload Notes
                         </button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Dashboard Section -->
+            <section id="dashboardSection" class="section">
+                <h2>My Dashboard</h2>
+                
+                <div class="admin-stats">
+                    <div class="stat-card">
+                        <h3 id="totalEarnings">₹0</h3>
+                        <p>Total Earnings</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 id="totalNotes">0</h3>
+                        <p>Notes Uploaded</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 id="totalSales">0</h3>
+                        <p>Total Sales</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 id="commissionEarned">₹0</h3>
+                        <p>Commission Earned</p>
                     </div>
                 </div>
                 
+                <h3>My Uploaded Notes</h3>
                 <div class="notes-grid" id="myNotesGrid">
                     <!-- User's notes will be loaded here -->
                 </div>
             </section>
 
-            <!-- Notes Market Section -->
-            <section id="marketSection" class="dashboard-section">
-                <div class="section-header">
-                    <h1>Notes <span>Marketplace</span></h1>
-                    <div style="display: flex; gap: 10px;">
-                        <select id="categoryFilter" class="btn btn-outline" style="padding: 10px 15px;">
-                            <option value="all">All Categories</option>
-                            <option value="school">School Notes</option>
-                            <option value="college">College Notes</option>
-                            <option value="competitive">Competitive Exams</option>
-                            <option value="programming">Programming</option>
-                            <option value="other">Other</option>
-                        </select>
-                        <select id="priceFilter" class="btn btn-outline" style="padding: 10px 15px;">
-                            <option value="all">All Prices</option>
-                            <option value="free">Free Only</option>
-                            <option value="paid">Paid Only</option>
-                        </select>
-                    </div>
+            <!-- Withdrawal Section -->
+            <section id="withdrawSection" class="section">
+                <h2>Withdraw Earnings</h2>
+                
+                <div class="balance-display">
+                    <p>Available Balance</p>
+                    <div class="balance-amount" id="availableBalance">₹0</div>
+                    <p>Minimum withdrawal: ₹100</p>
                 </div>
                 
-                <div class="notes-grid" id="marketNotesGrid">
-                    <!-- Market notes will be loaded here -->
-                </div>
-            </section>
-
-            <!-- Upload Section -->
-            <section id="uploadSection" class="dashboard-section">
-                <div class="section-header">
-                    <h1>Upload <span>New Notes</span></h1>
-                    <div>
-                        <button class="btn btn-outline" id="viewMyUploadsBtn">
-                            <i class="fas fa-list"></i> View My Uploads
+                <div class="withdrawal-form">
+                    <form id="withdrawForm">
+                        <div class="form-group">
+                            <label for="withdrawAmount">Amount to Withdraw (₹)</label>
+                            <input type="number" id="withdrawAmount" min="100" step="10" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="paymentMethod">Payment Method</label>
+                            <select id="paymentMethod" required>
+                                <option value="">Select Method</option>
+                                <option value="upi">UPI</option>
+                                <option value="bank">Bank Transfer</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group" id="upiDetails" style="display: none;">
+                            <label for="upiId">UPI ID</label>
+                            <input type="text" id="upiId" placeholder="yourname@upi">
+                        </div>
+                        
+                        <div class="form-group" id="bankDetails" style="display: none;">
+                            <label for="accountNumber">Account Number</label>
+                            <input type="text" id="accountNumber" placeholder="Enter account number">
+                            <label for="ifscCode">IFSC Code</label>
+                            <input type="text" id="ifscCode" placeholder="Enter IFSC code">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-success btn-block">
+                            <i class="fas fa-rupee-sign"></i> Request Withdrawal
                         </button>
-                    </div>
-                </div>
-                
-                <div class="upload-form-container active" id="uploadFormContainer">
-                    <div class="form-header">
-                        <h3>Note Details</h3>
-                        <div style="font-size: 0.9rem; color: var(--gray);">
-                            <i class="fas fa-info-circle"></i> All fields are required
-                        </div>
-                    </div>
-                    
-                    <form id="noteUploadForm">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="noteTitle">Note Title</label>
-                                <input type="text" id="noteTitle" required placeholder="e.g., Class 12 Physics Notes">
-                            </div>
-                            <div class="form-group">
-                                <label for="noteCategory">Category</label>
-                                <select id="noteCategory" required>
-                                    <option value="">Select Category</option>
-                                    <option value="school">School Notes (₹0-₹99)</option>
-                                    <option value="college">College Notes (₹0-₹199)</option>
-                                    <option value="competitive">Competitive Exams (₹0-₹299)</option>
-                                    <option value="programming">Programming (₹0-₹499)</option>
-                                    <option value="other">Other (₹0-₹999)</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="notePrice">Price (₹)</label>
-                                <input type="number" id="notePrice" min="0" max="999" step="1" value="0" required>
-                                <div style="font-size: 0.85rem; color: var(--gray); margin-top: 8px;">
-                                    Set 0 for free notes
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="noteSubject">Subject/Topic</label>
-                                <input type="text" id="noteSubject" required placeholder="e.g., Physics, Mathematics, JavaScript">
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="noteDescription">Description</label>
-                            <textarea id="noteDescription" required placeholder="Describe your notes in detail..."></textarea>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Upload File</label>
-                            <div class="file-upload-area" id="fileUploadArea">
-                                <div class="file-upload-icon">
-                                    <i class="fas fa-cloud-upload-alt"></i>
-                                </div>
-                                <p style="font-size: 1.1rem; font-weight: 600; margin-bottom: 10px;">Click to upload or drag and drop</p>
-                                <p>PDF, DOC, PPT, TXT files (Max 20MB)</p>
-                                <div class="file-info" id="fileInfo">No file chosen</div>
-                                <input type="file" id="noteFile" hidden accept=".pdf,.doc,.docx,.ppt,.pptx,.txt">
-                            </div>
-                        </div>
-                        
-                        <div style="display: flex; gap: 15px; margin-top: 30px;">
-                            <button type="submit" class="btn btn-primary" style="flex: 1; padding: 16px;">
-                                <i class="fas fa-upload"></i> Upload Notes
-                            </button>
-                            <button type="button" class="btn btn-outline" id="cancelUpload">
-                                <i class="fas fa-times"></i> Cancel
-                            </button>
-                        </div>
                     </form>
-                </div>
-            </section>
-
-            <!-- Dashboard Stats Section -->
-            <section id="statsSection" class="dashboard-section">
-                <div class="section-header">
-                    <h1>Your <span>Dashboard</span></h1>
-                    <div style="display: flex; gap: 10px;">
-                        <button class="btn btn-success" id="refreshDashboard">
-                            <i class="fas fa-sync-alt"></i> Refresh
-                        </button>
-                    </div>
-                </div>
-                
-                <div style="background: white; border-radius: var(--border-radius); padding: 30px; box-shadow: var(--card-shadow);">
-                    <h3 style="margin-bottom: 25px; font-size: 1.5rem;">Your Statistics</h3>
-                    <div class="stats-container">
-                        <div class="stat-card">
-                            <div class="stat-icon notes" style="background: linear-gradient(135deg, #667eea, #764ba2);">
-                                <i class="fas fa-book"></i>
-                            </div>
-                            <div class="stat-info">
-                                <h3 id="userNotesCount">0</h3>
-                                <p>Your Notes</p>
-                            </div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-icon sales" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
-                                <i class="fas fa-shopping-cart"></i>
-                            </div>
-                            <div class="stat-info">
-                                <h3 id="userSalesCount">0</h3>
-                                <p>Your Sales</p>
-                            </div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-icon revenue" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">
-                                <i class="fas fa-rupee-sign"></i>
-                            </div>
-                            <div class="stat-info">
-                                <h3 id="userRevenue">₹0</h3>
-                                <p>Your Earnings</p>
-                            </div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-icon users" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
-                                <i class="fas fa-download"></i>
-                            </div>
-                            <div class="stat-info">
-                                <h3 id="userDownloads">0</h3>
-                                <p>Total Downloads</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <h3 style="margin: 50px 0 25px; font-size: 1.5rem;">Recent Transactions</h3>
-                    <div style="overflow-x: auto;">
-                        <table style="width: 100%; border-collapse: collapse;">
-                            <thead>
-                                <tr style="background: #f8f9fa; border-bottom: 2px solid var(--light-gray);">
-                                    <th style="padding: 15px; text-align: left;">Note</th>
-                                    <th style="padding: 15px; text-align: left;">Buyer</th>
-                                    <th style="padding: 15px; text-align: left;">Amount</th>
-                                    <th style="padding: 15px; text-align: left;">Date</th>
-                                    <th style="padding: 15px; text-align: left;">Status</th>
-                                </tr>
-                            </thead>
-                            <tbody id="transactionsTable">
-                                <!-- Transactions will be loaded here -->
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
             </section>
         </div>
     </main>
 
+    <!-- PDF Preview Modal -->
+    <div class="pdf-preview-container" id="pdfPreview">
+        <div class="pdf-preview">
+            <div class="pdf-header">
+                <h3 id="pdfTitle">PDF Preview</h3>
+                <button class="btn btn-outline" id="closePdf">
+                    <i class="fas fa-times"></i> Close
+                </button>
+            </div>
+            <div class="pdf-viewer" id="pdfViewer">
+                <canvas id="pdf-canvas"></canvas>
+                <div id="pageInfo">
+                    <button class="btn btn-small" id="prevPage">Previous</button>
+                    <span id="pageNum"></span> / <span id="pageCount"></span>
+                    <button class="btn btn-small" id="nextPage">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Payment Modal -->
     <div class="payment-modal" id="paymentModal">
-        <div class="payment-container">
-            <div class="payment-header">
-                <h3>Complete Payment</h3>
-                <p>To download "<span id="paymentNoteTitle"></span>"</p>
-                <div class="payment-amount" id="paymentAmount">₹0</div>
+        <div class="payment-content">
+            <h3>Complete Payment</h3>
+            <p>To download: <span id="paymentNoteTitle"></span></p>
+            <div class="payment-amount" id="paymentAmount">₹0</div>
+            
+            <div class="qr-code-container">
+                <p>Scan this QR code to pay:</p>
+                <!-- YOUR PHONEPE QR CODE HERE -->
+                <img src="https://img.sanishtech.com/u/b54bf7f6c6ea2afa005443f37aad3e6a.png" 
+                     alt="PhonePe QR Code" 
+                     style="width: 200px; height: 200px; margin: 15px auto; display: block;">
+                <p><strong>UPI ID: 9608449213@ybl</strong></p>
+                <p>Shahzad Ansari</p>
             </div>
             
-            <div style="text-align: center; margin: 20px 0;">
-                <p>Scan this QR code or use UPI ID below</p>
-                <div style="background: white; padding: 20px; border-radius: 12px; display: inline-block; margin: 15px 0; border: 1px solid var(--light-gray);">
-                    <div id="upiQrCode" style="width: 200px; height: 200px; background: #f5f5f5; display: flex; align-items: center; justify-content: center; color: var(--gray);">
-                        QR Code Display<br>(Actual in production)
-                    </div>
-                </div>
-                <div style="background: #f8f9fa; padding: 15px; border-radius: 10px; margin: 20px 0;">
-                    <p style="font-weight: 600; margin-bottom: 5px;">UPI ID:</p>
-                    <p style="font-size: 1.2rem; font-weight: 700; color: var(--primary);">9608449213@ybl</p>
-                    <p style="font-size: 0.9rem; color: var(--gray); margin-top: 10px;">Shahzad Ansari</p>
-                </div>
+            <div class="payment-instructions">
+                <p><i class="fas fa-info-circle"></i> After payment, share screenshot on WhatsApp for verification</p>
+                <p>WhatsApp: <strong>+91 9608449213</strong></p>
             </div>
             
             <div style="display: flex; gap: 15px; margin-top: 30px;">
-                <button class="btn btn-success" id="confirmPayment" style="flex: 1;">
-                    <i class="fas fa-check-circle"></i> I've Paid
+                <button class="btn btn-success" id="confirmPayment">
+                    <i class="fas fa-check"></i> I've Paid
                 </button>
                 <button class="btn btn-outline" id="cancelPayment">
                     <i class="fas fa-times"></i> Cancel
                 </button>
             </div>
-            
-            <div class="payment-note">
-                <p><i class="fas fa-info-circle"></i> Payment will be verified manually. Download link will be sent after verification.</p>
-                <p style="margin-top: 10px; font-size: 0.85rem;">Contact: shahjadansari9235@gmail.com for any payment issues</p>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="payment-modal" id="loginModal">
+        <div class="payment-content">
+            <h3>Login / Sign Up</h3>
+            <form id="authForm">
+                <div class="form-group">
+                    <label for="authEmail">Email Address *</label>
+                    <input type="email" id="authEmail" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="authPassword">Password *</label>
+                    <input type="password" id="authPassword" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="authName">Full Name (for new users)</label>
+                    <input type="text" id="authName">
+                </div>
+                
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="rememberMe"> Remember me
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-block" id="authSubmit">
+                    Login / Sign Up
+                </button>
+                
+                <p style="text-align: center; margin-top: 15px;">
+                    <small>By continuing, you agree to our Terms & Conditions</small>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget">
+        <button class="chat-button" id="chatButton">
+            <i class="fas fa-comment"></i>
+        </button>
+        <div class="ai-chat-container" id="aiChat">
+            <div class="ai-chat-header">
+                <span><i class="fas fa-robot"></i> AI Study Assistant</span>
+                <button class="btn btn-small" id="closeChat">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="ai-chat-body" id="chatMessages">
+                <div class="message ai">
+                    <p>Hello! I'm your AI study assistant. Ask me anything about the notes or request a summary!</p>
+                </div>
+            </div>
+            <div class="ai-chat-input">
+                <input type="text" id="chatInput" placeholder="Ask about notes...">
+                <button class="btn btn-primary" id="sendMessage">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
             </div>
         </div>
     </div>
+
+    <!-- Notification Container -->
+    <div id="notificationContainer"></div>
 
     <!-- Footer -->
     <footer>
@@ -1205,28 +1069,21 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>About Shahzad Notes</h3>
-                    <p>A premium educational platform where students and educators can share quality study materials. We believe in making education accessible to everyone.</p>
-                    <div style="display: flex; gap: 15px; margin-top: 20px;">
-                        <a href="#" style="color: white; font-size: 1.3rem;"><i class="fab fa-facebook"></i></a>
-                        <a href="#" style="color: white; font-size: 1.3rem;"><i class="fab fa-twitter"></i></a>
-                        <a href="#" style="color: white; font-size: 1.3rem;"><i class="fab fa-instagram"></i></a>
-                        <a href="#" style="color: white; font-size: 1.3rem;"><i class="fab fa-linkedin"></i></a>
-                    </div>
+                    <p>A premium educational platform connecting students and educators. Quality notes at affordable prices.</p>
                 </div>
                 
                 <div class="footer-section">
                     <h3>Quick Links</h3>
-                    <div style="display: flex; flex-direction: column; gap: 12px;">
-                        <a href="#" style="color: rgba(255, 255, 255, 0.7); text-decoration: none;">Home</a>
-                        <a href="#" style="color: rgba(255, 255, 255, 0.7); text-decoration: none;">Notes Market</a>
-                        <a href="#" style="color: rgba(255, 255, 255, 0.7); text-decoration: none;">Upload Notes</a>
-                        <a href="#" style="color: rgba(255, 255, 255, 0.7); text-decoration: none;">Dashboard</a>
-                        <a href="#" style="color: rgba(255, 255, 255, 0.7); text-decoration: none;">How it Works</a>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <a href="#homeSection" style="color: rgba(255,255,255,0.8); text-decoration: none;">Home</a>
+                        <a href="#marketSection" style="color: rgba(255,255,255,0.8); text-decoration: none;">Notes Market</a>
+                        <a href="#uploadSection" style="color: rgba(255,255,255,0.8); text-decoration: none;">Upload Notes</a>
+                        <a href="#withdrawSection" style="color: rgba(255,255,255,0.8); text-decoration: none;">Withdraw Earnings</a>
                     </div>
                 </div>
                 
                 <div class="footer-section">
-                    <h3>Contact Information</h3>
+                    <h3>Contact Us</h3>
                     <div class="contact-info">
                         <div class="contact-item">
                             <i class="fas fa-user"></i>
@@ -1242,27 +1099,34 @@
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-university"></i>
-                            <span>UPI ID: 9608449213@ybl</span>
+                            <span>UPI: 9608449213@ybl</span>
                         </div>
                     </div>
                 </div>
             </div>
             
             <div class="copyright">
-                <p>&copy; 2023 Shahzad Notes. All rights reserved. | Designed for educational purposes</p>
+                <p>&copy; 2023 Shahzad Notes. All rights reserved. | 5% commission on all sales</p>
             </div>
         </div>
     </footer>
 
+    <!-- ==================== ALL JAVASCRIPT IN ONE PLACE ==================== -->
     <script>
-        // ==================== APP STATE & DATA ====================
+        // ============================================
+        // COMPLETE JAVASCRIPT APPLICATION
+        // ============================================
+        
+        // Global Variables
         let currentUser = null;
         let currentNoteForPayment = null;
-        let allNotes = [];
+        let pdfDocument = null;
+        let currentPage = 1;
+        let notesData = [];
         let transactions = [];
-
-        // Initial notes data
-        const initialNotes = [
+        
+        // Sample Data
+        const sampleNotes = [
             {
                 id: 1,
                 title: "Class 12 Physics Complete Notes",
@@ -1271,171 +1135,101 @@
                 category: "school",
                 subject: "Physics",
                 uploader: "Shahzad A.",
-                uploaderInitials: "SA",
+                uploaderId: "admin",
                 uploadDate: "2023-10-15",
-                isPremium: true,
+                isFree: false,
                 downloads: 124,
                 rating: 4.8,
                 fileSize: "4.2 MB",
-                fileType: "PDF"
+                fileUrl: "physics_notes.pdf",
+                pages: 45,
+                content: "Physics is the study of matter, energy, and their interactions..."
             },
             {
                 id: 2,
-                title: "JavaScript Programming Basics",
+                title: "JavaScript Programming Basics - FREE",
                 description: "Learn JavaScript from scratch. Perfect for beginners. Includes variables, functions, DOM manipulation, and projects.",
                 price: 0,
                 category: "programming",
                 subject: "JavaScript",
                 uploader: "Web Master",
-                uploaderInitials: "WM",
+                uploaderId: "webmaster",
                 uploadDate: "2023-10-10",
-                isPremium: false,
+                isFree: true,
                 downloads: 342,
                 rating: 4.9,
                 fileSize: "3.1 MB",
-                fileType: "PDF"
+                fileUrl: "javascript_basics.pdf",
+                pages: 32,
+                content: "JavaScript is a programming language used for web development..."
             },
             {
                 id: 3,
-                title: "NEET Biology Short Notes",
-                description: "Concise biology notes for NEET preparation. All important topics covered with mnemonics for easy memorization.",
-                price: 199,
-                category: "competitive",
-                subject: "Biology",
-                uploader: "Medico Guide",
-                uploaderInitials: "MG",
-                uploadDate: "2023-10-05",
-                isPremium: true,
-                downloads: 87,
-                rating: 4.7,
-                fileSize: "5.8 MB",
-                fileType: "PDF"
-            },
-            {
-                id: 4,
-                title: "Class 10 Mathematics Formulas",
-                description: "All important formulas for Class 10 Mathematics with examples and applications. Perfect for quick revision.",
-                price: 0,
+                title: "Mathematics Formulas Class 10",
+                description: "All important mathematics formulas for Class 10 with examples and practice problems.",
+                price: 29,
                 category: "school",
                 subject: "Mathematics",
                 uploader: "Math Guru",
-                uploaderInitials: "MG",
-                uploadDate: "2023-09-28",
-                isPremium: false,
-                downloads: 456,
-                rating: 4.6,
-                fileSize: "2.3 MB",
-                fileType: "PDF"
+                uploaderId: "mathguru",
+                uploadDate: "2023-10-05",
+                isFree: false,
+                downloads: 89,
+                rating: 4.7,
+                fileSize: "2.8 MB",
+                fileUrl: "math_formulas.pdf",
+                pages: 28,
+                content: "Algebra, Geometry, Trigonometry formulas with examples..."
             },
             {
-                id: 5,
-                title: "Python Programming Advanced",
-                description: "Advanced Python concepts including OOP, data structures, algorithms, and real-world projects.",
-                price: 299,
-                category: "programming",
-                subject: "Python",
-                uploader: "Code Expert",
-                uploaderInitials: "CE",
-                uploadDate: "2023-09-20",
-                isPremium: true,
-                downloads: 56,
-                rating: 4.9,
-                fileSize: "6.7 MB",
-                fileType: "PDF"
-            },
-            {
-                id: 6,
-                title: "Commerce Accountancy Notes",
-                description: "Complete accountancy notes for Class 12 Commerce students with solved problems and practice questions.",
-                price: 99,
+                id: 4,
+                title: "Biology Diagrams and Notes",
+                description: "Detailed biology notes with labeled diagrams for better understanding.",
+                price: 0,
                 category: "school",
-                subject: "Accountancy",
-                uploader: "Commerce Pro",
-                uploaderInitials: "CP",
-                uploadDate: "2023-09-15",
-                isPremium: true,
-                downloads: 78,
-                rating: 4.5,
-                fileSize: "4.5 MB",
-                fileType: "PDF"
+                subject: "Biology",
+                uploader: "Bio Expert",
+                uploaderId: "bioexpert",
+                uploadDate: "2023-09-28",
+                isFree: true,
+                downloads: 156,
+                rating: 4.6,
+                fileSize: "5.1 MB",
+                fileUrl: "biology_notes.pdf",
+                pages: 40,
+                content: "Human anatomy, plant biology, and cellular structure diagrams..."
             }
         ];
-
-        // ==================== DOM ELEMENTS ====================
-        const welcomePopup = document.getElementById('welcomePopup');
-        const closePopupBtn = document.getElementById('closePopup');
-        const exploreBtn = document.getElementById('exploreBtn');
-        const uploadWelcomeBtn = document.getElementById('uploadWelcomeBtn');
-        const hamburger = document.getElementById('hamburger');
-        const userProfile = document.getElementById('userProfile');
-        const uploadNotesBtn = document.getElementById('uploadNotesBtn');
-        const uploadMyNotesBtn = document.getElementById('uploadMyNotesBtn');
-        const viewMyUploadsBtn = document.getElementById('viewMyUploadsBtn');
-        const cancelUpload = document.getElementById('cancelUpload');
-        const noteUploadForm = document.getElementById('noteUploadForm');
-        const fileUploadArea = document.getElementById('fileUploadArea');
-        const noteFileInput = document.getElementById('noteFile');
-        const fileInfo = document.getElementById('fileInfo');
-        const paymentModal = document.getElementById('paymentModal');
-        const paymentNoteTitle = document.getElementById('paymentNoteTitle');
-        const paymentAmount = document.getElementById('paymentAmount');
-        const confirmPaymentBtn = document.getElementById('confirmPayment');
-        const cancelPaymentBtn = document.getElementById('cancelPayment');
-        const categoryFilter = document.getElementById('categoryFilter');
-        const priceFilter = document.getElementById('priceFilter');
-        const refreshDashboardBtn = document.getElementById('refreshDashboard');
-
-        // Section elements
-        const homeSection = document.getElementById('homeSection');
-        const myNotesSection = document.getElementById('myNotesSection');
-        const marketSection = document.getElementById('marketSection');
-        const uploadSection = document.getElementById('uploadSection');
-        const statsSection = document.getElementById('statsSection');
-
-        // Navigation elements
-        const navHome = document.getElementById('navHome');
-        const navMyNotes = document.getElementById('navMyNotes');
-        const navMarket = document.getElementById('navMarket');
-        const navUpload = document.getElementById('navUpload');
-        const navStats = document.getElementById('navStats');
-
-        // Grid elements
-        const featuredNotesGrid = document.getElementById('featuredNotesGrid');
-        const myNotesGrid = document.getElementById('myNotesGrid');
-        const marketNotesGrid = document.getElementById('marketNotesGrid');
-
-        // ==================== INITIALIZATION ====================
+        
+        // Initialize Application
         document.addEventListener('DOMContentLoaded', function() {
-            // Load data from localStorage
-            loadDataFromStorage();
-            
-            // Initialize UI
-            initUI();
-            
-            // Set up event listeners
+            initApp();
             setupEventListeners();
-            
-            // Show welcome popup after delay
-            setTimeout(() => {
-                welcomePopup.classList.add('active');
-            }, 500);
+            loadSampleData();
+            updateStats();
         });
-
-        // ==================== DATA MANAGEMENT ====================
-        function loadDataFromStorage() {
-            // Load current user
+        
+        function initApp() {
+            // Load user from localStorage
             const savedUser = localStorage.getItem('shahzadNotesUser');
             if (savedUser) {
                 currentUser = JSON.parse(savedUser);
+                updateUserInfo();
+                showNotification('Welcome back, ' + currentUser.name + '!', 'success');
             }
             
+            // Load data from localStorage
+            loadDataFromStorage();
+            
+            // Check for new day to update earnings
+            checkDailyUpdate();
+        }
+        
+        function loadDataFromStorage() {
             // Load notes
             const savedNotes = localStorage.getItem('shahzadNotesData');
             if (savedNotes) {
-                allNotes = JSON.parse(savedNotes);
-            } else {
-                allNotes = [...initialNotes];
-                saveNotesToStorage();
+                notesData = JSON.parse(savedNotes);
             }
             
             // Load transactions
@@ -1444,139 +1238,84 @@
                 transactions = JSON.parse(savedTransactions);
             }
         }
-
-        function saveNotesToStorage() {
-            localStorage.setItem('shahzadNotesData', JSON.stringify(allNotes));
-        }
-
-        function saveUserToStorage() {
-            localStorage.setItem('shahzadNotesUser', JSON.stringify(currentUser));
-        }
-
-        function saveTransactionsToStorage() {
+        
+        function saveDataToStorage() {
+            localStorage.setItem('shahzadNotesData', JSON.stringify(notesData));
             localStorage.setItem('shahzadNotesTransactions', JSON.stringify(transactions));
         }
-
-        // ==================== UI INITIALIZATION ====================
-        function initUI() {
-            // Update user info
-            updateUserInfo();
+        
+        function loadSampleData() {
+            // Add sample notes if none exist
+            if (notesData.length === 0) {
+                notesData = [...sampleNotes];
+                saveDataToStorage();
+            }
             
-            // Render featured notes
+            renderAllNotes();
+        }
+        
+        function renderAllNotes() {
             renderFeaturedNotes();
-            
-            // Render market notes
             renderMarketNotes();
-            
-            // Update stats
-            updateStats();
-            
-            // Set up navigation
-            setupNavigation();
-        }
-
-        function updateUserInfo() {
-            const userAvatar = document.getElementById('userAvatar');
-            const userName = document.getElementById('userName');
-            const userType = document.getElementById('userType');
-            
             if (currentUser) {
-                userAvatar.textContent = currentUser.initials || 'U';
-                userName.textContent = currentUser.name || 'User';
-                userType.textContent = 'Premium User';
-                
-                // Render user's notes
                 renderMyNotes();
-                
-                // Update dashboard
-                updateDashboard();
-            } else {
-                userAvatar.textContent = 'G';
-                userName.textContent = 'Sign In';
-                userType.textContent = 'Guest';
-                
-                // Show login prompt when clicking profile
-                userProfile.onclick = showLoginPrompt;
             }
         }
-
-        function showLoginPrompt() {
-            const userEmail = prompt("Enter your email to sign in (demo: user@example.com):");
-            if (userEmail) {
-                const userName = prompt("Enter your name:");
-                if (userName) {
-                    currentUser = {
-                        email: userEmail,
-                        name: userName,
-                        initials: userName.split(' ').map(n => n[0]).join('').toUpperCase(),
-                        joinedDate: new Date().toISOString().split('T')[0],
-                        notesUploaded: 0,
-                        sales: 0,
-                        revenue: 0,
-                        downloads: 0
-                    };
-                    
-                    saveUserToStorage();
-                    updateUserInfo();
-                    alert(`Welcome ${userName}! You can now upload and sell notes.`);
-                }
-            }
-        }
-
-        // ==================== NOTES RENDERING ====================
+        
         function renderFeaturedNotes() {
-            featuredNotesGrid.innerHTML = '';
+            const container = document.getElementById('featuredNotes');
+            if (!container) return;
             
-            // Get 6 featured notes (mix of free and premium)
-            const featuredNotes = allNotes.slice(0, 6);
+            container.innerHTML = '';
             
-            featuredNotes.forEach(note => {
-                featuredNotesGrid.appendChild(createNoteCard(note, 'featured'));
+            // Get 4 featured notes
+            const featured = notesData.slice(0, 4);
+            featured.forEach(note => {
+                container.appendChild(createNoteCard(note, 'featured'));
             });
-            
-            // Update stats
-            updateStats();
         }
-
+        
         function renderMarketNotes() {
-            marketNotesGrid.innerHTML = '';
+            const container = document.getElementById('marketNotes');
+            if (!container) return;
+            
+            container.innerHTML = '';
             
             // Apply filters
-            let filteredNotes = [...allNotes];
-            const category = categoryFilter.value;
-            const price = priceFilter.value;
+            const categoryFilter = document.getElementById('categoryFilter')?.value || 'all';
+            const priceFilter = document.getElementById('priceFilter')?.value || 'all';
             
-            if (category !== 'all') {
-                filteredNotes = filteredNotes.filter(note => note.category === category);
+            let filteredNotes = [...notesData];
+            
+            if (categoryFilter !== 'all') {
+                filteredNotes = filteredNotes.filter(note => note.category === categoryFilter);
             }
             
-            if (price === 'free') {
+            if (priceFilter === 'free') {
                 filteredNotes = filteredNotes.filter(note => note.price === 0);
-            } else if (price === 'paid') {
+            } else if (priceFilter === 'paid') {
                 filteredNotes = filteredNotes.filter(note => note.price > 0);
             }
             
             filteredNotes.forEach(note => {
-                marketNotesGrid.appendChild(createNoteCard(note, 'market'));
+                container.appendChild(createNoteCard(note, 'market'));
             });
         }
-
+        
         function renderMyNotes() {
-            if (!currentUser) return;
+            const container = document.getElementById('myNotesGrid');
+            if (!container || !currentUser) return;
             
-            myNotesGrid.innerHTML = '';
+            container.innerHTML = '';
             
-            // Filter notes uploaded by current user
-            const userNotes = allNotes.filter(note => 
-                note.uploader === currentUser.name || note.uploaderInitials === currentUser.initials
-            );
+            const myNotes = notesData.filter(note => note.uploaderId === currentUser.id);
             
-            if (userNotes.length === 0) {
-                myNotesGrid.innerHTML = `
-                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
-                        <i class="fas fa-cloud-upload-alt" style="font-size: 4rem; color: var(--light-gray); margin-bottom: 20px;"></i>
-                        <h3 style="color: var(--gray); margin-bottom: 15px;">No notes uploaded yet</h3>
-                        <p style="color: var(--gray); max-width: 500px; margin: 0 auto 30px;">Start sharing your knowledge by uploading your first set of notes!</p>
+            if (myNotes.length === 0) {
+                container.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 40px; background: white; border-radius: 12px;">
+                        <i class="fas fa-cloud-upload-alt" style="font-size: 3rem; color: #ccc; margin-bottom: 15px;"></i>
+                        <h3 style="color: #666; margin-bottom: 10px;">No notes uploaded yet</h3>
+                        <p style="color: #888; margin-bottom: 20px;">Upload your first notes to start earning!</p>
                         <button class="btn btn-primary" id="uploadFirstNote">
                             <i class="fas fa-upload"></i> Upload Your First Note
                         </button>
@@ -1585,630 +1324,794 @@
                 
                 document.getElementById('uploadFirstNote')?.addEventListener('click', () => {
                     showSection('uploadSection');
+                    setActiveNav('navUpload');
                 });
             } else {
-                userNotes.forEach(note => {
-                    myNotesGrid.appendChild(createNoteCard(note, 'my'));
+                myNotes.forEach(note => {
+                    container.appendChild(createNoteCard(note, 'my'));
                 });
             }
         }
-
+        
         function createNoteCard(note, context) {
             const card = document.createElement('div');
             card.className = 'note-card';
             card.dataset.id = note.id;
             
             const isFree = note.price === 0;
-            const badgeText = isFree ? 'FREE' : `₹${note.price}`;
-            const badgeClass = isFree ? 'free-badge' : 'premium-badge';
-            const imageClass = isFree ? 'free' : 'premium';
-            const priceClass = isFree ? 'free' : 'premium';
-            
-            // Generate appropriate icon based on subject
-            const subjectIcon = getSubjectIcon(note.subject);
             
             card.innerHTML = `
-                <div class="note-badge ${badgeClass}">${badgeText}</div>
-                <div class="note-image ${imageClass}">
-                    ${subjectIcon}
+                <div class="note-header">
+                    <div class="note-title">${note.title}</div>
+                    <div class="note-price">${isFree ? 'FREE' : '₹' + note.price}</div>
+                    <div style="font-size: 0.9rem; opacity: 0.9;">${note.subject} • ${note.uploader}</div>
                 </div>
-                <div class="note-content">
-                    <h3 class="note-title">${note.title}</h3>
+                <div class="note-body">
                     <p class="note-description">${note.description}</p>
-                    <div class="note-meta">
-                        <div class="note-uploader">
-                            <div class="note-uploader-avatar">${note.uploaderInitials}</div>
-                            <span>${note.uploader}</span>
-                        </div>
-                        <div class="note-price ${priceClass}">${isFree ? 'FREE' : `₹${note.price}`}</div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: #666; margin-top: 15px;">
+                        <span><i class="fas fa-download"></i> ${note.downloads} downloads</span>
+                        <span><i class="fas fa-star"></i> ${note.rating}</span>
+                        <span><i class="fas fa-file-pdf"></i> ${note.fileSize}</span>
                     </div>
-                    <div class="note-actions">
-                        ${context === 'my' ? `
-                            <button class="btn btn-outline btn-small view-note-btn">
-                                <i class="fas fa-eye"></i> View
-                            </button>
-                            <button class="btn btn-outline btn-small edit-note-btn">
-                                <i class="fas fa-edit"></i> Edit
-                            </button>
-                            <button class="btn btn-outline btn-small stats-note-btn">
-                                <i class="fas fa-chart-bar"></i> Stats
-                            </button>
-                        ` : `
-                            <button class="btn ${isFree ? 'btn-success' : 'btn-primary'} btn-small download-note-btn">
-                                <i class="fas fa-download"></i> ${isFree ? 'Download' : 'Buy Now'}
-                            </button>
-                            <button class="btn btn-outline btn-small preview-note-btn">
-                                <i class="fas fa-search"></i> Preview
-                            </button>
-                        `}
-                    </div>
+                </div>
+                <div class="note-footer">
+                    ${context === 'my' ? `
+                        <button class="btn btn-outline btn-small view-stats-btn">
+                            <i class="fas fa-chart-bar"></i> Stats
+                        </button>
+                        <button class="btn btn-outline btn-small edit-note-btn">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button class="btn btn-outline btn-small delete-note-btn">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    ` : `
+                        <button class="btn ${isFree ? 'btn-success' : 'btn-primary'} btn-small download-btn">
+                            <i class="fas fa-download"></i> ${isFree ? 'Download Free' : 'Buy Now'}
+                        </button>
+                        <button class="btn btn-outline btn-small preview-btn">
+                            <i class="fas fa-eye"></i> Preview
+                        </button>
+                    `}
                 </div>
             `;
             
-            // Add event listeners based on context
+            // Add event listeners
             if (context === 'my') {
-                const viewBtn = card.querySelector('.view-note-btn');
+                const statsBtn = card.querySelector('.view-stats-btn');
                 const editBtn = card.querySelector('.edit-note-btn');
-                const statsBtn = card.querySelector('.stats-note-btn');
+                const deleteBtn = card.querySelector('.delete-note-btn');
                 
-                viewBtn.addEventListener('click', () => viewNote(note.id));
-                editBtn.addEventListener('click', () => editNote(note.id));
                 statsBtn.addEventListener('click', () => showNoteStats(note.id));
+                editBtn.addEventListener('click', () => editNote(note.id));
+                deleteBtn.addEventListener('click', () => deleteNote(note.id));
             } else {
-                const downloadBtn = card.querySelector('.download-note-btn');
-                const previewBtn = card.querySelector('.preview-note-btn');
+                const downloadBtn = card.querySelector('.download-btn');
+                const previewBtn = card.querySelector('.preview-btn');
                 
                 downloadBtn.addEventListener('click', () => handleDownload(note.id));
-                previewBtn.addEventListener('click', () => previewNote(note.id));
+                previewBtn.addEventListener('click', () => previewNote(note));
             }
             
             return card;
         }
-
-        function getSubjectIcon(subject) {
-            const icons = {
-                'Physics': 'fas fa-atom',
-                'Mathematics': 'fas fa-calculator',
-                'Biology': 'fas fa-dna',
-                'Chemistry': 'fas fa-flask',
-                'JavaScript': 'fab fa-js',
-                'Python': 'fab fa-python',
-                'Accountancy': 'fas fa-calculator',
-                'Programming': 'fas fa-code'
-            };
-            
-            for (const [key, icon] of Object.entries(icons)) {
-                if (subject.toLowerCase().includes(key.toLowerCase())) {
-                    return `<i class="${icon}"></i>`;
-                }
-            }
-            
-            return '<i class="fas fa-book"></i>';
-        }
-
-        // ==================== NOTE ACTIONS ====================
+        
         function handleDownload(noteId) {
-            const note = allNotes.find(n => n.id === noteId);
+            const note = notesData.find(n => n.id === noteId);
             if (!note) return;
             
             if (note.price === 0) {
-                // Free note - download directly
+                // Free download
                 downloadNote(note);
             } else {
                 // Paid note - show payment modal
                 currentNoteForPayment = note;
-                paymentNoteTitle.textContent = note.title;
-                paymentAmount.textContent = `₹${note.price}`;
-                paymentModal.classList.add('active');
+                document.getElementById('paymentNoteTitle').textContent = note.title;
+                document.getElementById('paymentAmount').textContent = '₹' + note.price;
+                document.getElementById('paymentModal').classList.add('active');
             }
         }
-
+        
         function downloadNote(note) {
-            // Simulate download
-            alert(`Downloading "${note.title}"...\n\nFile: ${note.title}.pdf (${note.fileSize})\n\nIn production, this would start the actual file download.`);
+            // In real app, this would download the actual PDF
+            // For demo, we'll simulate it
+            
+            showNotification(`Starting download: "${note.title}"`, 'info');
             
             // Update download count
             note.downloads = (note.downloads || 0) + 1;
             
-            // If user is logged in, record transaction for free downloads
-            if (currentUser && note.price === 0) {
+            // Record transaction for paid notes
+            if (note.price > 0) {
                 const transaction = {
                     id: Date.now(),
                     noteId: note.id,
                     noteTitle: note.title,
-                    buyer: currentUser.name,
-                    amount: 0,
-                    date: new Date().toISOString().split('T')[0],
-                    status: 'completed',
-                    type: 'free_download'
+                    buyerId: currentUser?.id || 'guest',
+                    buyerName: currentUser?.name || 'Guest',
+                    amount: note.price,
+                    commission: note.price * 0.05, // 5% commission
+                    uploaderEarning: note.price * 0.95, // 95% to uploader
+                    date: new Date().toISOString(),
+                    status: 'completed'
                 };
                 
                 transactions.unshift(transaction);
-                saveTransactionsToStorage();
                 
-                // Update user stats
-                currentUser.downloads = (currentUser.downloads || 0) + 1;
-                saveUserToStorage();
-                
-                // Update uploader stats if different user
-                if (note.uploader !== currentUser.name) {
-                    // In production, this would update the uploader's stats
-                    console.log(`Note downloaded: ${note.title} by ${currentUser.name}`);
+                // Update uploader's earnings
+                if (note.uploaderId && note.uploaderId !== (currentUser?.id || 'guest')) {
+                    const uploaderKey = 'shahzadNotesUser_' + note.uploaderId;
+                    let uploader = JSON.parse(localStorage.getItem(uploaderKey));
+                    if (uploader) {
+                        uploader.earnings = (uploader.earnings || 0) + transaction.uploaderEarning;
+                        localStorage.setItem(uploaderKey, JSON.stringify(uploader));
+                    }
                 }
+                
+                // Update admin commission
+                updateAdminCommission(transaction.commission);
+                
+                showNotification(`Payment successful! ₹${transaction.uploaderEarning} credited to uploader.`, 'success');
             }
             
-            saveNotesToStorage();
-            updateStats();
-            updateDashboard();
-        }
-
-        function previewNote(noteId) {
-            const note = allNotes.find(n => n.id === noteId);
-            if (!note) return;
+            saveDataToStorage();
             
-            alert(`Preview of "${note.title}"\n\n${note.description}\n\nCategory: ${note.category}\nSubject: ${note.subject}\nPages: ~${Math.ceil(note.fileSize.replace(' MB', '') * 50)} pages\n\nIn production, this would show actual note preview.`);
-        }
-
-        function viewNote(noteId) {
-            const note = allNotes.find(n => n.id === noteId);
-            if (!note) return;
-            
-            alert(`Note Details:\n\nTitle: ${note.title}\nPrice: ₹${note.price}\nDownloads: ${note.downloads}\nRating: ${note.rating}/5\nUpload Date: ${note.uploadDate}\nFile: ${note.fileType}, ${note.fileSize}\n\nDescription: ${note.description}`);
-        }
-
-        function editNote(noteId) {
-            const note = allNotes.find(n => n.id === noteId);
-            if (!note) return;
-            
-            alert(`Edit feature for "${note.title}"\n\nIn production, this would open an edit form with all note details.`);
-        }
-
-        function showNoteStats(noteId) {
-            const note = allNotes.find(n => n.id === noteId);
-            if (!note) return;
-            
-            alert(`Statistics for "${note.title}":\n\n• Total Downloads: ${note.downloads}\n• Rating: ${note.rating}/5\n• Revenue: ₹${note.price * note.downloads}\n• Last Downloaded: Recently\n\nIn production, this would show detailed analytics.`);
-        }
-
-        // ==================== PAYMENT HANDLING ====================
-        confirmPaymentBtn.addEventListener('click', function() {
-            if (!currentNoteForPayment) return;
-            
-            const transactionId = 'TXN' + Date.now();
-            
-            // Record transaction
-            const transaction = {
-                id: transactionId,
-                noteId: currentNoteForPayment.id,
-                noteTitle: currentNoteForPayment.title,
-                buyer: currentUser ? currentUser.name : 'Guest',
-                amount: currentNoteForPayment.price,
-                date: new Date().toISOString().split('T')[0],
-                status: 'pending_verification',
-                upiId: '9608449213@ybl',
-                paymentMethod: 'UPI'
-            };
-            
-            transactions.unshift(transaction);
-            saveTransactionsToStorage();
-            
-            // Update note downloads
-            currentNoteForPayment.downloads = (currentNoteForPayment.downloads || 0) + 1;
-            
-            // Update uploader stats
-            if (currentNoteForPayment.uploader === currentUser?.name) {
-                // User bought their own note (shouldn't happen, but handle it)
-                alert("Note purchased! Since you're the uploader, you get free access.");
-            } else {
-                // In production, this would update the uploader's revenue
-                console.log(`Payment of ₹${currentNoteForPayment.price} recorded for ${currentNoteForPayment.title}`);
-            }
-            
-            saveNotesToStorage();
-            paymentModal.classList.remove('active');
-            
-            // Show success message
-            alert(`Payment recorded successfully!\n\nTransaction ID: ${transactionId}\nAmount: ₹${currentNoteForPayment.price}\nUPI ID: 9608449213@ybl\n\nPlease keep the transaction ID for reference. The download link will be sent after manual verification.\n\nContact: shahjadansari9235@gmail.com for any issues.`);
-            
-            currentNoteForPayment = null;
-            updateStats();
-            updateDashboard();
-        });
-
-        cancelPaymentBtn.addEventListener('click', function() {
-            paymentModal.classList.remove('active');
-            currentNoteForPayment = null;
-        });
-
-        // ==================== UPLOAD FUNCTIONALITY ====================
-        noteUploadForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            if (!currentUser) {
-                alert('Please sign in to upload notes.');
-                showLoginPrompt();
-                return;
-            }
-            
-            const title = document.getElementById('noteTitle').value;
-            const category = document.getElementById('noteCategory').value;
-            const price = parseInt(document.getElementById('notePrice').value);
-            const subject = document.getElementById('noteSubject').value;
-            const description = document.getElementById('noteDescription').value;
-            const file = noteFileInput.files[0];
-            
-            // Validate price based on category
-            const priceLimits = {
-                'school': 99,
-                'college': 199,
-                'competitive': 299,
-                'programming': 499,
-                'other': 999
-            };
-            
-            if (price > priceLimits[category]) {
-                alert(`Maximum price for ${category} notes is ₹${priceLimits[category]}. Please adjust the price.`);
-                return;
-            }
-            
-            if (!file) {
-                alert('Please select a file to upload.');
-                return;
-            }
-            
-            // Create new note
-            const newNote = {
-                id: allNotes.length + 1,
-                title: title,
-                description: description,
-                price: price,
-                category: category,
-                subject: subject,
-                uploader: currentUser.name,
-                uploaderInitials: currentUser.initials,
-                uploadDate: new Date().toISOString().split('T')[0],
-                isPremium: price > 0,
-                downloads: 0,
-                rating: 0,
-                fileSize: (file.size / (1024 * 1024)).toFixed(1) + ' MB',
-                fileType: file.name.split('.').pop().toUpperCase()
-            };
-            
-            allNotes.unshift(newNote);
-            saveNotesToStorage();
-            
-            // Update user stats
-            currentUser.notesUploaded = (currentUser.notesUploaded || 0) + 1;
-            saveUserToStorage();
-            
-            // Reset form
-            noteUploadForm.reset();
-            fileInfo.textContent = 'No file chosen';
-            
-            // Show success message
-            alert(`Notes uploaded successfully!\n\nTitle: ${title}\nPrice: ${price === 0 ? 'Free' : '₹' + price}\n\nYour notes are now available in the marketplace.`);
+            // Simulate download completion
+            setTimeout(() => {
+                showNotification(`Download complete: "${note.title}"`, 'success');
+                
+                // Show PDF preview after download
+                previewNote(note);
+            }, 2000);
             
             // Update UI
-            renderFeaturedNotes();
-            renderMarketNotes();
-            renderMyNotes();
+            renderAllNotes();
             updateStats();
-            updateDashboard();
-            
-            // Switch to my notes section
-            showSection('myNotesSection');
-        });
-
-        // File upload handling
-        fileUploadArea.addEventListener('click', () => {
-            noteFileInput.click();
-        });
-
-        noteFileInput.addEventListener('change', () => {
-            if (noteFileInput.files.length > 0) {
-                const file = noteFileInput.files[0];
-                const fileSize = (file.size / (1024 * 1024)).toFixed(2);
-                fileInfo.textContent = `${file.name} (${fileSize} MB)`;
-                
-                // Validate file size
-                if (file.size > 20 * 1024 * 1024) {
-                    alert('File size exceeds 20MB limit. Please choose a smaller file.');
-                    noteFileInput.value = '';
-                    fileInfo.textContent = 'No file chosen';
-                }
-            }
-        });
-
-        // Drag and drop
-        fileUploadArea.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            fileUploadArea.classList.add('dragover');
-        });
-
-        fileUploadArea.addEventListener('dragleave', () => {
-            fileUploadArea.classList.remove('dragover');
-        });
-
-        fileUploadArea.addEventListener('drop', (e) => {
-            e.preventDefault();
-            fileUploadArea.classList.remove('dragover');
-            
-            if (e.dataTransfer.files.length > 0) {
-                noteFileInput.files = e.dataTransfer.files;
-                const file = e.dataTransfer.files[0];
-                const fileSize = (file.size / (1024 * 1024)).toFixed(2);
-                fileInfo.textContent = `${file.name} (${fileSize} MB)`;
-                
-                // Validate file size
-                if (file.size > 20 * 1024 * 1024) {
-                    alert('File size exceeds 20MB limit. Please choose a smaller file.');
-                    noteFileInput.value = '';
-                    fileInfo.textContent = 'No file chosen';
-                }
-            }
-        });
-
-        // ==================== STATS & DASHBOARD ====================
-        function updateStats() {
-            const totalNotes = allNotes.length;
-            const totalSales = allNotes.filter(n => n.price > 0).reduce((sum, n) => sum + n.downloads, 0);
-            const totalUsers = 100 + totalNotes * 3; // Simulated user count
-            const totalRevenue = allNotes.filter(n => n.price > 0).reduce((sum, n) => sum + (n.price * n.downloads), 0);
-            
-            document.getElementById('totalNotesCount').textContent = totalNotes;
-            document.getElementById('totalSalesCount').textContent = totalSales;
-            document.getElementById('totalUsersCount').textContent = totalUsers.toLocaleString();
-            document.getElementById('totalRevenue').textContent = `₹${totalRevenue}`;
         }
-
-        function updateDashboard() {
+        
+        function previewNote(note) {
+            // Show PDF preview modal
+            document.getElementById('pdfTitle').textContent = note.title + ' - Preview';
+            document.getElementById('pdfPreview').classList.add('active');
+            
+            const canvas = document.getElementById('pdf-canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Set canvas size
+            canvas.width = 800;
+            canvas.height = 1000;
+            
+            // Draw sample PDF content
+            ctx.fillStyle = 'white';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw sample text
+            ctx.fillStyle = '#333';
+            ctx.font = '24px Arial';
+            ctx.fillText(note.title, 50, 100);
+            
+            ctx.font = '16px Arial';
+            ctx.fillText('Subject: ' + note.subject, 50, 150);
+            ctx.fillText('Uploader: ' + note.uploader, 50, 180);
+            ctx.fillText('Pages: ' + (note.pages || '30'), 50, 210);
+            ctx.fillText('Price: ' + (note.price === 0 ? 'FREE' : '₹' + note.price), 50, 240);
+            
+            // Draw sample content
+            ctx.font = '14px Arial';
+            let y = 280;
+            const lines = note.content ? note.content.split('. ') : [
+                'This is a sample preview of the notes content.',
+                'In the actual PDF, you would see the complete notes.',
+                'The notes cover important topics with examples.',
+                'Perfect for exam preparation and quick revision.',
+                'Download the full PDF to access all content.'
+            ];
+            
+            for (let i = 0; i < Math.min(lines.length, 15); i++) {
+                ctx.fillText('• ' + lines[i], 50, y);
+                y += 25;
+            }
+            
+            // Update page info
+            document.getElementById('pageNum').textContent = '1';
+            document.getElementById('pageCount').textContent = note.pages || '30';
+        }
+        
+        function updateUserInfo() {
             if (!currentUser) return;
             
-            // Calculate user stats
-            const userNotes = allNotes.filter(note => 
-                note.uploader === currentUser.name || note.uploaderInitials === currentUser.initials
+            document.getElementById('userName').textContent = currentUser.name;
+            document.getElementById('userAvatar').textContent = currentUser.name.charAt(0).toUpperCase();
+            document.getElementById('loginBtn').textContent = 'Logout';
+            
+            // Update user stats
+            updateUserStats();
+        }
+        
+        function updateStats() {
+            // Platform stats
+            const totalNotes = notesData.length;
+            const totalDownloads = notesData.reduce((sum, note) => sum + note.downloads, 0);
+            const totalCommission = transactions.reduce((sum, t) => sum + t.commission, 0);
+            
+            document.getElementById('totalNotes').textContent = totalNotes;
+            document.getElementById('totalSales').textContent = transactions.length;
+            document.getElementById('commissionEarned').textContent = '₹' + totalCommission;
+            
+            // User stats
+            updateUserStats();
+        }
+        
+        function updateUserStats() {
+            if (!currentUser) return;
+            
+            const userNotes = notesData.filter(note => note.uploaderId === currentUser.id);
+            const userTransactions = transactions.filter(t => 
+                notesData.some(n => n.id === t.noteId && n.uploaderId === currentUser.id)
             );
             
-            const userNotesCount = userNotes.length;
-            const userSalesCount = userNotes.filter(n => n.price > 0).reduce((sum, n) => sum + n.downloads, 0);
-            const userRevenue = userNotes.filter(n => n.price > 0).reduce((sum, n) => sum + (n.price * n.downloads), 0);
-            const userDownloads = currentUser.downloads || 0;
+            const userEarnings = userTransactions.reduce((sum, t) => sum + t.uploaderEarning, 0);
+            const userDownloads = userNotes.reduce((sum, note) => sum + note.downloads, 0);
             
-            document.getElementById('userNotesCount').textContent = userNotesCount;
-            document.getElementById('userSalesCount').textContent = userSalesCount;
-            document.getElementById('userRevenue').textContent = `₹${userRevenue}`;
-            document.getElementById('userDownloads').textContent = userDownloads;
-            
-            // Update transactions table
-            updateTransactionsTable();
+            document.getElementById('totalEarnings').textContent = '₹' + userEarnings;
+            document.getElementById('availableBalance').textContent = '₹' + userEarnings;
         }
-
-        function updateTransactionsTable() {
-            const transactionsTable = document.getElementById('transactionsTable');
-            transactionsTable.innerHTML = '';
+        
+        function updateAdminCommission(amount) {
+            const adminKey = 'shahzadNotesAdmin';
+            let adminData = JSON.parse(localStorage.getItem(adminKey)) || {
+                totalCommission: 0,
+                transactions: []
+            };
             
-            // Get user's transactions
-            const userTransactions = transactions.filter(t => 
-                t.buyer === currentUser.name || 
-                allNotes.some(n => n.id === t.noteId && (n.uploader === currentUser.name || n.uploaderInitials === currentUser.initials))
-            ).slice(0, 10); // Show last 10
+            adminData.totalCommission = (adminData.totalCommission || 0) + amount;
+            adminData.transactions.push({
+                amount: amount,
+                date: new Date().toISOString(),
+                note: currentNoteForPayment?.title
+            });
             
-            if (userTransactions.length === 0) {
-                transactionsTable.innerHTML = `
-                    <tr>
-                        <td colspan="5" style="padding: 40px; text-align: center; color: var(--gray);">
-                            <i class="fas fa-exchange-alt" style="font-size: 2rem; margin-bottom: 15px; display: block;"></i>
-                            <p>No transactions yet</p>
-                        </td>
-                    </tr>
-                `;
-            } else {
-                userTransactions.forEach(transaction => {
-                    const row = document.createElement('tr');
-                    row.style.borderBottom = '1px solid var(--light-gray)';
-                    row.innerHTML = `
-                        <td style="padding: 15px;">${transaction.noteTitle}</td>
-                        <td style="padding: 15px;">${transaction.buyer}</td>
-                        <td style="padding: 15px; font-weight: 600;">₹${transaction.amount}</td>
-                        <td style="padding: 15px;">${transaction.date}</td>
-                        <td style="padding: 15px;">
-                            <span style="padding: 5px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; 
-                                background: ${transaction.status === 'completed' ? '#d4edda' : transaction.status === 'pending_verification' ? '#fff3cd' : '#f8d7da'}; 
-                                color: ${transaction.status === 'completed' ? '#155724' : transaction.status === 'pending_verification' ? '#856404' : '#721c24'};">
-                                ${transaction.status}
-                            </span>
-                        </td>
-                    `;
-                    transactionsTable.appendChild(row);
-                });
-            }
+            localStorage.setItem(adminKey, JSON.stringify(adminData));
         }
-
-        // ==================== NAVIGATION ====================
+        
+        function showNotification(message, type = 'info') {
+            const container = document.getElementById('notificationContainer');
+            
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                <span>${message}</span>
+            `;
+            
+            container.appendChild(notification);
+            
+            // Show with animation
+            setTimeout(() => notification.classList.add('show'), 10);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 5000);
+        }
+        
+        function setupEventListeners() {
+            // Navigation
+            setupNavigation();
+            
+            // Login/Logout
+            document.getElementById('loginBtn').addEventListener('click', function() {
+                if (currentUser) {
+                    logoutUser();
+                } else {
+                    showLoginModal();
+                }
+            });
+            
+            // Payment
+            document.getElementById('confirmPayment').addEventListener('click', () => {
+                if (currentNoteForPayment) {
+                    downloadNote(currentNoteForPayment);
+                    document.getElementById('paymentModal').classList.remove('active');
+                }
+            });
+            
+            document.getElementById('cancelPayment').addEventListener('click', () => {
+                document.getElementById('paymentModal').classList.remove('active');
+                currentNoteForPayment = null;
+            });
+            
+            // PDF Preview
+            document.getElementById('closePdf').addEventListener('click', () => {
+                document.getElementById('pdfPreview').classList.remove('active');
+            });
+            
+            document.getElementById('prevPage').addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderPDFPage();
+                }
+            });
+            
+            document.getElementById('nextPage').addEventListener('click', () => {
+                if (pdfDocument && currentPage < pdfDocument.numPages) {
+                    currentPage++;
+                    renderPDFPage();
+                }
+            });
+            
+            // File Upload
+            const fileUploadArea = document.getElementById('fileUploadArea');
+            const uploadFileInput = document.getElementById('uploadFile');
+            const fileNameDisplay = document.getElementById('fileName');
+            
+            fileUploadArea.addEventListener('click', () => {
+                uploadFileInput.click();
+            });
+            
+            uploadFileInput.addEventListener('change', () => {
+                if (uploadFileInput.files.length > 0) {
+                    const file = uploadFileInput.files[0];
+                    const fileSizeMB = (file.size / (1024 * 1024)).toFixed(2);
+                    fileNameDisplay.textContent = file.name + ' (' + fileSizeMB + ' MB)';
+                    
+                    // Validate file size
+                    if (file.size > 20 * 1024 * 1024) {
+                        showNotification('File size exceeds 20MB limit', 'error');
+                        uploadFileInput.value = '';
+                        fileNameDisplay.textContent = 'No file chosen';
+                    }
+                }
+            });
+            
+            // Note Upload Form
+            document.getElementById('noteUploadForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                if (!currentUser) {
+                    showLoginModal();
+                    return;
+                }
+                
+                const title = document.getElementById('uploadTitle').value;
+                const description = document.getElementById('uploadDescription').value;
+                const category = document.getElementById('uploadCategory').value;
+                const price = parseInt(document.getElementById('uploadPrice').value);
+                const file = uploadFileInput.files[0];
+                
+                if (!file) {
+                    showNotification('Please select a PDF file to upload', 'error');
+                    return;
+                }
+                
+                if (!title || !description || !category) {
+                    showNotification('Please fill all required fields', 'error');
+                    return;
+                }
+                
+                // Create new note
+                const newNote = {
+                    id: Date.now(),
+                    title: title,
+                    description: description,
+                    price: price,
+                    category: category,
+                    subject: category,
+                    uploader: currentUser.name,
+                    uploaderId: currentUser.id,
+                    uploadDate: new Date().toISOString().split('T')[0],
+                    isFree: price === 0,
+                    downloads: 0,
+                    rating: 0,
+                    fileSize: (file.size / (1024 * 1024)).toFixed(1) + ' MB',
+                    fileUrl: file.name,
+                    pages: Math.floor(Math.random() * 50) + 20,
+                    content: description + ' This note covers important topics...'
+                };
+                
+                notesData.unshift(newNote);
+                saveDataToStorage();
+                
+                // Reset form
+                e.target.reset();
+                fileNameDisplay.textContent = 'No file chosen';
+                
+                showNotification('Notes uploaded successfully! You will earn 95% of each sale.', 'success');
+                renderAllNotes();
+                
+                // Switch to market section
+                showSection('marketSection');
+                setActiveNav('navMarket');
+            });
+            
+            // Withdrawal Form
+            document.getElementById('paymentMethod').addEventListener('change', function() {
+                const method = this.value;
+                document.getElementById('upiDetails').style.display = method === 'upi' ? 'block' : 'none';
+                document.getElementById('bankDetails').style.display = method === 'bank' ? 'block' : 'none';
+            });
+            
+            document.getElementById('withdrawForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                if (!currentUser) {
+                    showLoginModal();
+                    return;
+                }
+                
+                const amount = parseFloat(document.getElementById('withdrawAmount').value);
+                const method = document.getElementById('paymentMethod').value;
+                const upiId = document.getElementById('upiId')?.value || '';
+                const accountNumber = document.getElementById('accountNumber')?.value || '';
+                
+                if (amount < 100) {
+                    showNotification('Minimum withdrawal amount is ₹100', 'error');
+                    return;
+                }
+                
+                // Check user balance
+                const userTransactions = transactions.filter(t => 
+                    notesData.some(n => n.id === t.noteId && n.uploaderId === currentUser.id)
+                );
+                const userEarnings = userTransactions.reduce((sum, t) => sum + t.uploaderEarning, 0);
+                
+                if (amount > userEarnings) {
+                    showNotification('Insufficient balance', 'error');
+                    return;
+                }
+                
+                // Process withdrawal
+                const withdrawal = {
+                    id: 'WTH_' + Date.now(),
+                    userId: currentUser.id,
+                    amount: amount,
+                    method: method,
+                    upiId: upiId,
+                    accountNumber: accountNumber,
+                    date: new Date().toISOString(),
+                    status: 'pending'
+                };
+                
+                // Save withdrawal
+                const withdrawals = JSON.parse(localStorage.getItem('shahzadNotesWithdrawals') || '[]');
+                withdrawals.unshift(withdrawal);
+                localStorage.setItem('shahzadNotesWithdrawals', JSON.stringify(withdrawals));
+                
+                showNotification(`Withdrawal request of ₹${amount} submitted. It will be processed within 24 hours.`, 'success');
+                
+                // Reset form
+                e.target.reset();
+                document.getElementById('upiDetails').style.display = 'none';
+                document.getElementById('bankDetails').style.display = 'none';
+            });
+            
+            // AI Chat
+            document.getElementById('chatButton').addEventListener('click', () => {
+                document.getElementById('aiChat').classList.toggle('active');
+            });
+            
+            document.getElementById('closeChat').addEventListener('click', () => {
+                document.getElementById('aiChat').classList.remove('active');
+            });
+            
+            document.getElementById('sendMessage').addEventListener('click', sendChatMessage);
+            document.getElementById('chatInput').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    sendChatMessage();
+                }
+            });
+            
+            // Fullscreen toggle
+            document.getElementById('fullscreenBtn').addEventListener('click', toggleFullscreen);
+            
+            // Filters
+            document.getElementById('categoryFilter')?.addEventListener('change', renderMarketNotes);
+            document.getElementById('priceFilter')?.addEventListener('change', renderMarketNotes);
+            
+            // Get Started button
+            document.getElementById('getStartedBtn')?.addEventListener('click', () => {
+                if (!currentUser) {
+                    showLoginModal();
+                } else {
+                    showSection('uploadSection');
+                    setActiveNav('navUpload');
+                }
+            });
+        }
+        
         function setupNavigation() {
             const navItems = [
-                { element: navHome, section: homeSection, id: 'homeSection' },
-                { element: navMyNotes, section: myNotesSection, id: 'myNotesSection' },
-                { element: navMarket, section: marketSection, id: 'marketSection' },
-                { element: navUpload, section: uploadSection, id: 'uploadSection' },
-                { element: navStats, section: statsSection, id: 'statsSection' }
+                { id: 'navHome', section: 'homeSection' },
+                { id: 'navMarket', section: 'marketSection' },
+                { id: 'navUpload', section: 'uploadSection' },
+                { id: 'navDashboard', section: 'dashboardSection' },
+                { id: 'navWithdraw', section: 'withdrawSection' }
             ];
             
             navItems.forEach(item => {
-                item.element.addEventListener('click', (e) => {
+                document.getElementById(item.id).addEventListener('click', (e) => {
                     e.preventDefault();
-                    showSection(item.id);
-                    
-                    // Update active nav item
-                    navItems.forEach(nav => {
-                        nav.element.classList.remove('active');
-                    });
-                    item.element.classList.add('active');
+                    showSection(item.section);
+                    setActiveNav(item.id);
                 });
             });
         }
-
+        
         function showSection(sectionId) {
             // Hide all sections
-            const sections = [homeSection, myNotesSection, marketSection, uploadSection, statsSection];
-            sections.forEach(section => {
+            document.querySelectorAll('.section').forEach(section => {
                 section.classList.remove('active');
             });
             
             // Show selected section
             document.getElementById(sectionId).classList.add('active');
             
-            // Special handling for certain sections
-            if (sectionId === 'myNotesSection') {
-                renderMyNotes();
-            } else if (sectionId === 'marketSection') {
-                renderMarketNotes();
-            } else if (sectionId === 'statsSection') {
-                updateDashboard();
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        function setActiveNav(navId) {
+            // Remove active from all nav items
+            document.querySelectorAll('.nav-links a').forEach(nav => {
+                nav.classList.remove('active');
+            });
+            
+            // Add active to clicked nav
+            document.getElementById(navId).classList.add('active');
+        }
+        
+        function showLoginModal() {
+            document.getElementById('loginModal').classList.add('active');
+            
+            // Setup form submission
+            const authForm = document.getElementById('authForm');
+            authForm.onsubmit = (e) => {
+                e.preventDefault();
+                
+                const email = document.getElementById('authEmail').value;
+                const password = document.getElementById('authPassword').value;
+                const name = document.getElementById('authName').value;
+                
+                if (!email || !password) {
+                    showNotification('Please enter email and password', 'error');
+                    return;
+                }
+                
+                // Simulate login/signup
+                if (name) {
+                    // Sign up
+                    currentUser = {
+                        id: 'user_' + Date.now(),
+                        email: email,
+                        name: name,
+                        joinDate: new Date().toISOString().split('T')[0],
+                        earnings: 0
+                    };
+                    
+                    localStorage.setItem('shahzadNotesUser', JSON.stringify(currentUser));
+                    showNotification('Account created successfully! Welcome ' + name, 'success');
+                } else {
+                    // Login
+                    // Check if user exists
+                    const existingUser = JSON.parse(localStorage.getItem('shahzadNotesUser'));
+                    if (existingUser && existingUser.email === email) {
+                        currentUser = existingUser;
+                    } else {
+                        // Create new user for demo
+                        currentUser = {
+                            id: 'user_' + Date.now(),
+                            email: email,
+                            name: email.split('@')[0],
+                            joinDate: new Date().toISOString().split('T')[0],
+                            earnings: 0
+                        };
+                        localStorage.setItem('shahzadNotesUser', JSON.stringify(currentUser));
+                    }
+                    
+                    showNotification('Welcome back!', 'success');
+                }
+                
+                updateUserInfo();
+                document.getElementById('loginModal').classList.remove('active');
+                authForm.reset();
+                
+                // Update UI
+                renderAllNotes();
+                updateStats();
+            };
+        }
+        
+        function logoutUser() {
+            if (confirm('Are you sure you want to logout?')) {
+                currentUser = null;
+                localStorage.removeItem('shahzadNotesUser');
+                
+                document.getElementById('userName').textContent = 'Guest';
+                document.getElementById('userAvatar').textContent = 'G';
+                document.getElementById('loginBtn').textContent = 'Login';
+                
+                showNotification('Logged out successfully', 'info');
+                showSection('homeSection');
+                setActiveNav('navHome');
             }
         }
-
-        // ==================== EVENT LISTENERS ====================
-        function setupEventListeners() {
-            // Welcome popup
-            closePopupBtn.addEventListener('click', () => {
-                welcomePopup.classList.remove('active');
-            });
+        
+        function sendChatMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
             
-            exploreBtn.addEventListener('click', () => {
-                welcomePopup.classList.remove('active');
-                showSection('marketSection');
-                navMarket.classList.add('active');
-                navHome.classList.remove('active');
-            });
+            if (!message) return;
             
-            uploadWelcomeBtn.addEventListener('click', () => {
-                welcomePopup.classList.remove('active');
-                if (!currentUser) {
-                    showLoginPrompt();
+            // Add user message
+            addChatMessage(message, 'user');
+            input.value = '';
+            
+            // Show typing indicator
+            const typingIndicator = document.createElement('div');
+            typingIndicator.className = 'message ai typing';
+            typingIndicator.innerHTML = '<p><i>AI is typing...</i></p>';
+            document.getElementById('chatMessages').appendChild(typingIndicator);
+            
+            // Simulate AI thinking
+            setTimeout(() => {
+                // Remove typing indicator
+                typingIndicator.remove();
+                
+                // Generate AI response
+                let response = '';
+                
+                if (message.toLowerCase().includes('commission')) {
+                    response = "The platform charges 5% commission on each sale. Uploaders receive 95% of the sale price.";
+                } else if (message.toLowerCase().includes('price') || message.toLowerCase().includes('cost')) {
+                    response = "Notes prices range from ₹0 (free) to ₹999. School notes are typically ₹0-₹99, college notes ₹0-₹199, competitive exams ₹0-₹299, and programming notes ₹0-₹499.";
+                } else if (message.toLowerCase().includes('download') || message.toLowerCase().includes('free')) {
+                    response = "Free notes can be downloaded immediately. Paid notes require payment via UPI to 9608449213@ybl. After payment, share screenshot on WhatsApp for verification.";
+                } else if (message.toLowerCase().includes('withdraw') || message.toLowerCase().includes('earn')) {
+                    response = "You can withdraw your earnings by going to the Withdraw section. Minimum withdrawal is ₹100. Earnings are sent to your UPI or bank account within 24 hours.";
+                } else if (message.toLowerCase().includes('upload')) {
+                    response = "To upload notes: 1) Go to Upload section 2) Fill note details 3) Upload PDF file 4) Set price (0 for free) 5) Submit. You'll earn 95% of each sale!";
+                } else if (message.toLowerCase().includes('summary') || message.toLowerCase().includes('summarize')) {
+                    response = "I can summarize notes! Please upload the notes or paste the text, and I'll provide a concise summary with key points.";
                 } else {
-                    showSection('uploadSection');
-                    navUpload.classList.add('active');
-                    navHome.classList.remove('active');
+                    const responses = [
+                        "I can help you with notes, payments, withdrawals, and summaries. What would you like to know?",
+                        "This platform helps students and educators share knowledge. Uploaders earn 95% of sales!",
+                        "All payments go to UPI ID: 9608449213@ybl (Shahzad Ansari). Share payment screenshot on WhatsApp for verification.",
+                        "You need to login to upload notes or access your dashboard. Click the login button to get started!",
+                        "The AI assistant can help summarize notes and answer questions about the platform."
+                    ];
+                    response = responses[Math.floor(Math.random() * responses.length)];
                 }
-            });
-            
-            // User profile dropdown
-            userProfile.addEventListener('click', function(e) {
-                if (!currentUser) {
-                    showLoginPrompt();
-                } else {
-                    // Create dropdown menu
-                    const dropdown = document.createElement('div');
-                    dropdown.style.position = 'absolute';
-                    dropdown.style.top = '60px';
-                    dropdown.style.right = '20px';
-                    dropdown.style.background = 'white';
-                    dropdown.style.borderRadius = '10px';
-                    dropdown.style.boxShadow = '0 10px 30px rgba(0,0,0,0.15)';
-                    dropdown.style.padding = '15px 0';
-                    dropdown.style.minWidth = '200px';
-                    dropdown.style.zIndex = '1000';
-                    dropdown.innerHTML = `
-                        <div style="padding: 0 20px 15px; border-bottom: 1px solid var(--light-gray);">
-                            <div style="font-weight: 600; margin-bottom: 5px;">${currentUser.name}</div>
-                            <div style="font-size: 0.9rem; color: var(--gray);">${currentUser.email}</div>
-                        </div>
-                        <div style="padding: 10px 0;">
-                            <a href="#" style="display: block; padding: 10px 20px; color: var(--dark); text-decoration: none; transition: var(--transition);" id="profileLink">
-                                <i class="fas fa-user" style="margin-right: 10px;"></i>Profile
-                            </a>
-                            <a href="#" style="display: block; padding: 10px 20px; color: var(--dark); text-decoration: none; transition: var(--transition);" id="dashboardLink">
-                                <i class="fas fa-chart-bar" style="margin-right: 10px;"></i>Dashboard
-                            </a>
-                            <a href="#" style="display: block; padding: 10px 20px; color: var(--dark); text-decoration: none; transition: var(--transition);" id="settingsLink">
-                                <i class="fas fa-cog" style="margin-right: 10px;"></i>Settings
-                            </a>
-                        </div>
-                        <div style="padding: 15px 20px 0; border-top: 1px solid var(--light-gray);">
-                            <button style="width: 100%; padding: 10px; background: var(--danger); color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; transition: var(--transition);" id="logoutBtn">
-                                <i class="fas fa-sign-out-alt" style="margin-right: 8px;"></i>Logout
-                            </button>
-                        </div>
-                    `;
-                    
-                    document.body.appendChild(dropdown);
-                    
-                    // Add event listeners for dropdown items
-                    dropdown.querySelector('#profileLink').addEventListener('click', (e) => {
-                        e.preventDefault();
-                        dropdown.remove();
-                        showSection('statsSection');
-                    });
-                    
-                    dropdown.querySelector('#dashboardLink').addEventListener('click', (e) => {
-                        e.preventDefault();
-                        dropdown.remove();
-                        showSection('statsSection');
-                    });
-                    
-                    dropdown.querySelector('#logoutBtn').addEventListener('click', () => {
-                        if (confirm('Are you sure you want to logout?')) {
-                            currentUser = null;
-                            localStorage.removeItem('shahzadNotesUser');
-                            updateUserInfo();
-                            dropdown.remove();
-                            showSection('homeSection');
-                            navHome.classList.add('active');
-                            navStats.classList.remove('active');
-                        }
-                    });
-                    
-                    // Close dropdown when clicking outside
-                    setTimeout(() => {
-                        const closeDropdown = (e) => {
-                            if (!dropdown.contains(e.target) && !userProfile.contains(e.target)) {
-                                dropdown.remove();
-                                document.removeEventListener('click', closeDropdown);
-                            }
-                        };
-                        document.addEventListener('click', closeDropdown);
-                    }, 100);
-                }
-            });
-            
-            // Upload buttons
-            uploadNotesBtn.addEventListener('click', () => {
-                if (!currentUser) {
-                    showLoginPrompt();
-                } else {
-                    showSection('uploadSection');
-                }
-            });
-            
-            uploadMyNotesBtn.addEventListener('click', () => {
-                showSection('uploadSection');
-            });
-            
-            viewMyUploadsBtn.addEventListener('click', () => {
-                showSection('myNotesSection');
-            });
-            
-            cancelUpload.addEventListener('click', () => {
-                if (currentUser) {
-                    showSection('myNotesSection');
-                } else {
-                    showSection('homeSection');
-                }
-            });
-            
-            // Filters
-            categoryFilter.addEventListener('change', renderMarketNotes);
-            priceFilter.addEventListener('change', renderMarketNotes);
-            
-            // Refresh dashboard
-            refreshDashboardBtn.addEventListener('click', updateDashboard);
-            
-            // Hamburger menu
-            hamburger.addEventListener('click', function() {
-                alert('Mobile menu would open here. For demo, use the navigation above.');
-            });
+                
+                addChatMessage(response, 'ai');
+            }, 1500);
         }
+        
+        function addChatMessage(text, sender) {
+            const container = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            messageDiv.innerHTML = `<p>${text}</p>`;
+            container.appendChild(messageDiv);
+            container.scrollTop = container.scrollHeight;
+        }
+        
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+                document.body.classList.add('fullscreen');
+                document.getElementById('fullscreenBtn').innerHTML = '<i class="fas fa-compress"></i>';
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                    document.body.classList.remove('fullscreen');
+                    document.getElementById('fullscreenBtn').innerHTML = '<i class="fas fa-expand"></i>';
+                }
+            }
+        }
+        
+        function showNoteStats(noteId) {
+            const note = notesData.find(n => n.id === noteId);
+            if (!note) return;
+            
+            const earnings = note.downloads * note.price * 0.95;
+            const commission = note.downloads * note.price * 0.05;
+            
+            alert(`📊 Statistics for "${note.title}":\n\n` +
+                  `• Downloads: ${note.downloads}\n` +
+                  `• Earnings: ₹${earnings.toFixed(2)}\n` +
+                  `• Commission Paid: ₹${commission.toFixed(2)}\n` +
+                  `• Rating: ${note.rating}/5\n` +
+                  `• Upload Date: ${note.uploadDate}\n\n` +
+                  `💡 Tip: Share your notes link to get more downloads!`);
+        }
+        
+        function editNote(noteId) {
+            const note = notesData.find(n => n.id === noteId);
+            if (!note) return;
+            
+            // Pre-fill form with note data
+            document.getElementById('uploadTitle').value = note.title;
+            document.getElementById('uploadDescription').value = note.description;
+            document.getElementById('uploadCategory').value = note.category;
+            document.getElementById('uploadPrice').value = note.price;
+            
+            // Switch to upload section
+            showSection('uploadSection');
+            setActiveNav('navUpload');
+            
+            showNotification('Edit your note details and click Upload to update', 'info');
+        }
+        
+        function deleteNote(noteId) {
+            if (confirm('Are you sure you want to delete this note? This action cannot be undone.')) {
+                notesData = notesData.filter(n => n.id !== noteId);
+                saveDataToStorage();
+                renderAllNotes();
+                showNotification('Note deleted successfully', 'success');
+            }
+        }
+        
+        function renderPDFPage() {
+            // This would render actual PDF pages using pdf.js
+            // For demo, we'll just update the page number
+            document.getElementById('pageNum').textContent = currentPage;
+        }
+        
+        function checkDailyUpdate() {
+            const lastUpdate = localStorage.getItem('shahzadNotesLastUpdate');
+            const today = new Date().toDateString();
+            
+            if (lastUpdate !== today) {
+                // Update daily stats or perform maintenance
+                localStorage.setItem('shahzadNotesLastUpdate', today);
+                
+                // Simulate daily commission calculation
+                const adminData = JSON.parse(localStorage.getItem('shahzadNotesAdmin') || '{}');
+                if (adminData.totalCommission > 0) {
+                    console.log(`💰 Daily commission total: ₹${adminData.totalCommission}`);
+                }
+            }
+        }
+        
+        // WhatsApp Integration
+        function openWhatsApp(message = '') {
+            const phoneNumber = '919608449213';
+            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+        
+        // Add WhatsApp link to payment instructions
+        document.querySelector('.payment-instructions')?.addEventListener('click', function(e) {
+            if (e.target.tagName === 'STRONG') {
+                const noteTitle = currentNoteForPayment?.title || 'Notes Purchase';
+                const amount = currentNoteForPayment?.price || 0;
+                const message = `Payment for ${noteTitle} - ₹${amount}\nTransaction ID: TXN_${Date.now()}\nUPI: 9608449213@ybl`;
+                openWhatsApp(message);
+            }
+        });
+        
+        // Export app object for debugging
+        window.ShahzadNotes = {
+            currentUser,
+            notesData,
+            transactions,
+            renderAllNotes,
+            updateStats,
+            showNotification,
+            openWhatsApp
+        };
+        
+        console.log('🚀 Shahzad Notes Website Loaded Successfully!');
+        console.log('📧 Contact: shahjadansari9235@gmail.com');
+        console.log('📱 WhatsApp: +91 9608449213');
+        console.log('💳 UPI: 9608449213@ybl');
+        console.log('💸 Commission Rate: 5%');
     </script>
 </body>
 </html>
